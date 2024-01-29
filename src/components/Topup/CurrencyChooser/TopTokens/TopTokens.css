@@ -1,0 +1,40 @@
+.top_tokens_wrapper {
+  width: calc(100% - 40px);
+  align-content: center;
+  align-items: center;
+  justify-self: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+  height: min-content;
+  justify-content: flex-start;
+  overflow: hidden;
+  padding: 15px 20px;
+  position: relative;
+}
+.top_tokens_wrapper .top_token {
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  gap: 7px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  align-items: center;
+  cursor: pointer;
+  padding: 3px;
+  transition: scale 0.05s, background-color 0.1s;
+  user-select: none;
+}
+
+.top_tokens_wrapper .top_token:hover {
+  background-color: rgba(230, 230, 230, 1);
+}
+.top_tokens_wrapper .top_token:active {
+  scale: 0.9;
+}
+
+.top_tokens_wrapper .top_token img {
+  width: 30px;
+}

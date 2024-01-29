@@ -1,0 +1,110 @@
+:root {
+  --font-family: "Satoshi", monospace;
+  --font-size: 24px;
+}
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  cursor: url("../media/cursor.png") 20 1, pointer;
+  overflow: hidden;
+}
+.spliter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5em;
+  position: relative;
+  z-index: 1;
+}
+.content {
+  display: flex;
+  width: 60%;
+  margin: 0 20%;
+  align-items: center;
+  justify-content: center;
+}
+main {
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+.blured_bg {
+  position: absolute;
+  width: 1000px;
+  height: 1000px;
+  filter: blur(120px);
+  right: 0;
+  z-index: 0;
+}
+@media screen and (max-width: 1260px) {
+  .spliter {
+    justify-content: flex-start;
+    margin-top: 1em;
+    flex-direction: column;
+    width: 100%;
+    gap: 1em;
+  }
+  .usage.mobile {
+    display: flex;
+    width: 90%;
+    gap: 0;
+    justify-content: space-between;
+  }
+  .how_it_works .svg_container {
+    height: unset;
+  }
+  .usage.mobile .svg_container {
+    width: 130px;
+  }
+  .usage.usage.mobile .how_it_works p {
+    font-size: 25px;
+  }
+  .usage.usage.mobile .how_it_works span {
+    font-size: 14px;
+  }
+  .header p {
+    font-size: 45px;
+  }
+  .usage {
+    display: none;
+  }
+  .topup-form {
+    width: 90% !important;
+  }
+  .content {
+    all: inherit;
+  }
+  .form-controls-wrapper .inputs {
+    width: 100%;
+  }
+  .description {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 700px) {
+  .form-controls-wrapper.inputs {
+    justify-content: space-between;
+  }
+  .form-controls-wrapper .inputs {
+    overflow: hidden;
+    width: 300px;
+  }
+}
+@media screen and (max-width: 540px) {
+  .form-controls-wrapper .inputs {
+    width: 150px;
+  }
+}
+input:disabled {
+  all: inherit;
+}
