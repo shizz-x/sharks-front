@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import UseAccessContext from "../../contexts/UseAccessContext";
+import React, { useState } from "react";
+import UseAccessContext from "../../contexts/AccessContext/UseAccessContext";
 import "./Login.css";
 import videoLayer from "../../media/button.mp4";
 import { Link } from "react-router-dom";
@@ -7,7 +7,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { login } = UseAccessContext();
+  const { loginHandler } = UseAccessContext();
 
   const setEmailHandler = (e) => {
     setEmail(e.target.value);
@@ -16,8 +16,8 @@ export default function Login() {
     setPassword(e.target.value);
   };
 
-  const loginHandler = async () => {
-    await login(email, password);
+  const loginHandle = async () => {
+    await loginHandler(email, password);
   };
 
   return (
@@ -38,7 +38,7 @@ export default function Login() {
           placeholder="Password"
         />
       </div>
-      <button onClick={loginHandler} className="submit-button">
+      <button onClick={loginHandle} className="submit-button">
         <span>Log in</span>
         <div className="video-layer">
           <video src={videoLayer} loop muted playsInline></video>
