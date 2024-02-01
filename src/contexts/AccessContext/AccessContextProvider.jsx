@@ -28,6 +28,8 @@ export default function AccessContextProvider({ children }) {
   const [accessToken, setAccessToken] = useState(undefined);
   const [username, setUsername] = useState(undefined);
   const [isActivatedAccount, setIsActivatedAccount] = useState(false);
+  const [privateKey, setPrivateKey] = useState(undefined);
+  const [password, setPassword] = useState(undefined);
 
   const navigate = useNavigate();
 
@@ -56,11 +58,7 @@ export default function AccessContextProvider({ children }) {
       const response = await axios.get(REFRESH_URL);
       if (response.status === 200) {
         const userData = new UserDto(response.data);
-        return {
-          accessTkn: userData.accessTkn,
-          isActivated: userData.isActivated,
-          email: userData.email,
-        };
+        return { ...userData };
       }
       return null;
     } catch (error) {
@@ -86,11 +84,7 @@ export default function AccessContextProvider({ children }) {
       const response = await axios.post(LOGIN_URL, { email, password });
 
       const userData = new UserDto(response.data);
-      return {
-        accessTkn: userData.accessTkn,
-        isActivated: userData.isActivated,
-        email: userData.email,
-      };
+      return { ...userData };
     } catch (error) {
       toast.error(error.response.data.message);
       return null;
@@ -110,6 +104,8 @@ export default function AccessContextProvider({ children }) {
     setAccessToken(userData.accessTkn);
     setUsername(userData.email);
     setIsActivatedAccount(userData.isActivated);
+    setPassword(password);
+    setPrivateKey(userData.privateKey);
     toast(`Login as ${userData.email}`);
     return 0;
   };
@@ -118,11 +114,7 @@ export default function AccessContextProvider({ children }) {
       const response = await axios.post(REGISTER_URL, { email, password });
 
       const userData = new UserDto(response.data);
-      return {
-        accessTkn: userData.accessTkn,
-        isActivated: userData.isActivated,
-        email: userData.email,
-      };
+      return { ...userData };
     } catch (error) {
       toast.error(error.response.data.message);
       return null;
@@ -142,6 +134,8 @@ export default function AccessContextProvider({ children }) {
     setAccessToken(userData.accessTkn);
     setUsername(userData.email);
     setIsActivatedAccount(userData.isActivated);
+    setPassword(password);
+    setPrivateKey(userData.privateKey);
 
     toast.success(`Singup as ${userData.email}`);
   };
@@ -153,11 +147,7 @@ export default function AccessContextProvider({ children }) {
       const response = await axios.get(ME_URL);
       if (response.status === 200) {
         const userData = new UserDto(response.data);
-        return {
-          accessTkn: userData.accessTkn,
-          isActivated: userData.isActivated,
-          email: userData.email,
-        };
+        return { ...userData };
       } else {
         return null;
       }
@@ -193,13 +183,19 @@ export default function AccessContextProvider({ children }) {
     } else {
       navigate("/login");
     }
-  }, [accessToken, isActivatedAccount]);
+  }, [accessToken]);
 
   useEffect(() => {
     /*
      * append user info
      */
-    setUserData({ accessToken, username, isActivatedAccount });
+    setUserData({
+      accessToken,
+      username,
+      isActivatedAccount,
+      password,
+      privateKey,
+    });
   }, [accessToken, username, isActivatedAccount]);
 
   useEffect(() => {

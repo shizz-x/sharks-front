@@ -1,4 +1,4 @@
-module.exports = class UserDto {
+module.exports = class WalletDto {
   email;
   id;
   isActivated;
