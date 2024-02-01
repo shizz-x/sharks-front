@@ -6,6 +6,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import TokenDto from "../../dtos/token-dto";
 const REFRESH_URL =
   process.env.REACT_APP_API_URL +
   process.env.REACT_APP_API_BASE_PATH +
@@ -22,6 +23,10 @@ const REGISTER_URL =
   process.env.REACT_APP_API_URL +
   process.env.REACT_APP_API_BASE_PATH +
   "/registration";
+const ASSETS_URL =
+  process.env.REACT_APP_API_URL +
+  process.env.REACT_APP_API_BASE_PATH +
+  "/assets";
 const ME_URL =
   process.env.REACT_APP_API_URL + process.env.REACT_APP_API_BASE_PATH + "/me";
 export default function AccessContextProvider({ children }) {
@@ -54,46 +59,77 @@ export default function AccessContextProvider({ children }) {
      * refresh access token if refreshTkn in cookies
      */
 
-    try {
-      const response = await axios.get(REFRESH_URL);
-      if (response.status === 200) {
+    const _refresh = async () => {
+      try {
+        const response = await axios.get(REFRESH_URL);
         const userData = new UserDto(response.data);
+
         return { ...userData };
+      } catch (error) {
+        toast.error(error.response.data.message);
+        return null;
       }
-      return null;
-    } catch (error) {
-      return null;
+    };
+
+    const userData = await _refresh();
+
+    if (userData) {
+      setAccessTokenToLocalStorage(userData.accessTkn);
     }
+    window.location.reload();
   };
-  const _logout = async () => {
-    const response = await axios.post(LOGOUT_URL);
-    if (response.status === 200) {
-      return true;
+
+  const avaliableTokensHandler = async () => {
+    const _avaliableTokens = async () => {
+      try {
+        const response = await axios.get(ASSETS_URL);
+
+        return TokenDto.createArray(response);
+      } catch (error) {
+        toast.error(error.response.data.message);
+        return null;
+      }
+    };
+    const avaliableTokens = await _avaliableTokens();
+
+    if (!avaliableTokens) {
+      return null;
     }
-    return false;
+
+    return avaliableTokens;
   };
   const logoutHandler = async () => {
+    const _logout = async () => {
+      try {
+        const response = await axios.post(LOGOUT_URL);
+
+        return true;
+      } catch (error) {
+        return null;
+      }
+    };
     const response = await _logout();
     if (response) {
       localStorage.removeItem("Access-Token");
-      window.location.reload();
     }
-  };
-  const _login = async (email, password) => {
-    try {
-      const response = await axios.post(LOGIN_URL, { email, password });
-
-      const userData = new UserDto(response.data);
-      return { ...userData };
-    } catch (error) {
-      toast.error(error.response.data.message);
-      return null;
-    }
+    window.location.reload();
   };
   const loginHandler = async (email, password) => {
     /*
      * login
      */
+
+    const _login = async (email, password) => {
+      try {
+        const response = await axios.post(LOGIN_URL, { email, password });
+
+        const userData = new UserDto(response.data);
+        return { ...userData };
+      } catch (error) {
+        toast.error(error.response.data.message);
+        return null;
+      }
+    };
 
     const userData = await _login(email, password);
 
@@ -109,26 +145,26 @@ export default function AccessContextProvider({ children }) {
     toast(`Login as ${userData.email}`);
     return 0;
   };
-  const _register = async (email, password) => {
-    try {
-      const response = await axios.post(REGISTER_URL, { email, password });
-
-      const userData = new UserDto(response.data);
-      return { ...userData };
-    } catch (error) {
-      toast.error(error.response.data.message);
-      return null;
-    }
-  };
   const registerHandler = async (email, password) => {
     /*
      * register new user
      */
+    const _register = async (email, password) => {
+      try {
+        const response = await axios.post(REGISTER_URL, { email, password });
+
+        const userData = new UserDto(response.data);
+        return { ...userData };
+      } catch (error) {
+        toast.error(error.response.data.message);
+        return null;
+      }
+    };
 
     const userData = await _register(email, password);
 
     if (!userData) {
-      throw new ClientError.BadRequest("Bad request");
+      return;
     }
 
     setAccessToken(userData.accessTkn);
@@ -143,17 +179,21 @@ export default function AccessContextProvider({ children }) {
     /*
      * get user data from server
      */
-    try {
-      const response = await axios.get(ME_URL);
-      if (response.status === 200) {
+    const _me = async () => {
+      try {
+        const response = await axios.get(ME_URL);
+
         const userData = new UserDto(response.data);
         return { ...userData };
-      } else {
+      } catch (error) {
+        toast.error(error.response.data.message);
         return null;
       }
-    } catch (error) {
-      return null;
-    }
+    };
+
+    const userData = await _me();
+
+    return userData;
   };
   useEffect(() => {
     /*
@@ -207,7 +247,13 @@ export default function AccessContextProvider({ children }) {
 
   return (
     <Context.Provider
-      value={{ loginHandler, logoutHandler, registerHandler, userData }}
+      value={{
+        loginHandler,
+        logoutHandler,
+        registerHandler,
+        avaliableTokensHandler,
+        userData,
+      }}
     >
       {children}
     </Context.Provider>

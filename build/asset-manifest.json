@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.87e3bc73.css",
+    "main.js": "/static/js/main.d4bc77eb.js",
+    "static/media/shark.svg": "/static/media/shark.a88437465239bd6e03e666ec9a4fdd71.svg",
+    "static/media/button.mp4": "/static/media/button.267a2ac648f9a0cd7963.mp4",
+    "static/media/sharks-logo.svg": "/static/media/sharks-logo.3131aebab30799d883c9aead873e36cf.svg",
+    "static/media/arrow_white.svg": "/static/media/arrow_white.a852a62ced5785babab3d43282f07c54.svg",
+    "static/media/arrow_black.svg": "/static/media/arrow_black.6ad09c87de68b4ec4f12197b38df28e3.svg",
+    "index.html": "/index.html",
+    "main.87e3bc73.css.map": "/static/css/main.87e3bc73.css.map",
+    "main.d4bc77eb.js.map": "/static/js/main.d4bc77eb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.87e3bc73.css",
+    "static/js/main.d4bc77eb.js"
+  ]
+}
