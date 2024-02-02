@@ -67,7 +67,9 @@ export default function AccessContextProvider({ children }) {
 
     const _refresh = async () => {
       try {
-        const response = await axios.get(REFRESH_URL);
+        const response = await axios.get(REFRESH_URL, {
+          withCredentials: true,
+        });
         const userData = new UserDto(response.data);
 
         return { ...userData };
@@ -88,7 +90,7 @@ export default function AccessContextProvider({ children }) {
   const avaliableTokensHandler = async () => {
     const _avaliableTokens = async () => {
       try {
-        const response = await axios.get(ASSETS_URL);
+        const response = await axios.get(ASSETS_URL, { withCredentials: true });
 
         return TokenDto.createArray(response);
       } catch (error) {
@@ -107,7 +109,9 @@ export default function AccessContextProvider({ children }) {
   const logoutHandler = async () => {
     const _logout = async () => {
       try {
-        const response = await axios.post(LOGOUT_URL);
+        const response = await axios.post(LOGOUT_URL, {
+          withCredentials: true,
+        });
 
         return true;
       } catch (error) {
@@ -127,7 +131,11 @@ export default function AccessContextProvider({ children }) {
 
     const _login = async (email, password) => {
       try {
-        const response = await axios.post(LOGIN_URL, { email, password });
+        const response = await axios.post(
+          LOGIN_URL,
+          { email, password },
+          { withCredentials: true }
+        );
 
         const userData = new UserDto(response.data);
         return { ...userData };
@@ -157,7 +165,11 @@ export default function AccessContextProvider({ children }) {
      */
     const _register = async (email, password) => {
       try {
-        const response = await axios.post(REGISTER_URL, { email, password });
+        const response = await axios.post(
+          REGISTER_URL,
+          { email, password },
+          { withCredentials: true }
+        );
 
         const userData = new UserDto(response.data);
         return { ...userData };
@@ -187,7 +199,7 @@ export default function AccessContextProvider({ children }) {
      */
     const _me = async () => {
       try {
-        const response = await axios.get(ME_URL);
+        const response = await axios.get(ME_URL, { withCredentials: true });
 
         const userData = new UserDto(response.data);
         return { ...userData };
