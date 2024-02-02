@@ -7,13 +7,34 @@ import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import TokenDto from "../../dtos/token-dto";
+// const REFRESH_URL =
+//   process.env.REACT_APP_API_URL +
+//   process.env.REACT_APP_API_BASE_PATH +
+//   "/refresh";
+// const LOGIN_URL =
+//   process.env.REACT_APP_API_URL +
+//   process.env.REACT_APP_API_BASE_PATH +
+//   "/login";
+// const LOGOUT_URL =
+//   process.env.REACT_APP_API_URL +
+//   process.env.REACT_APP_API_BASE_PATH +
+//   "/logout";
+// const REGISTER_URL =
+//   process.env.REACT_APP_API_URL +
+//   process.env.REACT_APP_API_BASE_PATH +
+//   "/registration";
+// const ASSETS_URL =
+//   process.env.REACT_APP_API_URL +
+//   process.env.REACT_APP_API_BASE_PATH +
+//   "/assets";
+// const ME_URL =
+//   process.env.REACT_APP_API_URL + process.env.REACT_APP_API_BASE_PATH + "/me";
 const REFRESH_URL = "https://gogi.meme/api" + "/refresh";
 const LOGIN_URL = "https://gogi.meme/api" + "/login";
 const LOGOUT_URL = "https://gogi.meme/api" + "/logout";
 const REGISTER_URL = "https://gogi.meme/api" + "/registration";
 const ASSETS_URL = "https://gogi.meme/api" + "/assets";
-const ME_URL =
-  process.env.REACT_APP_API_URL + process.env.REACT_APP_API_BASE_PATH + "/me";
+const ME_URL = "https://gogi.meme/api" + "/me";
 export default function AccessContextProvider({ children }) {
   const [accessToken, setAccessToken] = useState(undefined);
   const [username, setUsername] = useState(undefined);

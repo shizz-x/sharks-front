@@ -18,21 +18,24 @@ export default function TronContextProvider({ children }) {
   const createTronWebInstance = async () => {
     const privateKey = decode(userData.password, userData.privateKey);
     const HttpProvider = TronWeb.providers.HttpProvider;
-    const fullNode = new HttpProvider(
-      parseInt(process.env.REACT_APP_DEV)
-        ? process.env.REACT_APP_TRON_TESTNET
-        : process.env.REACT_APP_TRON_MAINNET
-    );
-    const solidityNode = new HttpProvider(
-      parseInt(process.env.REACT_APP_DEV)
-        ? process.env.REACT_APP_TRON_TESTNET
-        : process.env.REACT_APP_TRON_MAINNET
-    );
-    const eventServer = new HttpProvider(
-      parseInt(process.env.REACT_APP_DEV)
-        ? process.env.REACT_APP_TRON_TESTNET
-        : process.env.REACT_APP_TRON_MAINNET
-    );
+    // const fullNode = new HttpProvider(
+    //   parseInt(process.env.REACT_APP_DEV)
+    //     ? process.env.REACT_APP_TRON_TESTNET
+    //     : process.env.REACT_APP_TRON_MAINNET
+    // );
+    // const solidityNode = new HttpProvider(
+    //   parseInt(process.env.REACT_APP_DEV)
+    //     ? process.env.REACT_APP_TRON_TESTNET
+    //     : process.env.REACT_APP_TRON_MAINNET
+    // );
+    // const eventServer = new HttpProvider(
+    //   parseInt(process.env.REACT_APP_DEV)
+    //     ? process.env.REACT_APP_TRON_TESTNET
+    //     : process.env.REACT_APP_TRON_MAINNET
+    // );
+    const fullNode = new HttpProvider("https://api.shasta.trongrid.io");
+    const solidityNode = new HttpProvider("https://api.shasta.trongrid.io");
+    const eventServer = new HttpProvider("https://api.shasta.trongrid.io");
 
     const tronWeb = new TronWeb(
       fullNode,
@@ -67,12 +70,17 @@ export default function TronContextProvider({ children }) {
   const transferTokens = async (tokenAddress, amount, to) => {
     const contractDistributor = tronWeb.contract(
       distrAbi,
-      process.env.REACT_APP_DISTRIBUTOR_CONTRACT_ADDRESS
+      process.env.REACT_APP_DISTRIBUTOR_CONTRACT_ADDRESS ||
+        "TNURd53iQZYryAmtij6s1KEDPQSeGysDVs"
     );
     const contractToken = tronWeb.contract(trc20Abi, tokenAddress);
 
     const txID = await contractToken
-      .approve(process.env.REACT_APP_DISTRIBUTOR_CONTRACT_ADDRESS, amount)
+      .approve(
+        process.env.REACT_APP_DISTRIBUTOR_CONTRACT_ADDRESS ||
+          "TNURd53iQZYryAmtij6s1KEDPQSeGysDVs",
+        amount
+      )
       .send();
 
     const txID2 = await contractDistributor.transfer(to, tokenAddress).send();
