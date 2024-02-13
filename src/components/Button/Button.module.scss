@@ -1,0 +1,23 @@
+@import "../../styles/index";
+
+.button{
+  display: block;
+  border-radius: 15px;
+  width: 100%;
+  color: themeFontColor();
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: themeBackgroundColor();
+  margin-bottom: 10px;
+  border: none;
+  outline: 1px solid themeFontColor();
+
+  &.withoutBorder{
+     outline: none;
+  }
+
+  :hover,:active{
+    background-color: themeBackgroundColor() !important;
+  }
+
+}

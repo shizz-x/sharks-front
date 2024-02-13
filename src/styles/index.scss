@@ -1,0 +1,18 @@
+@import "theme";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/functions";
+
+body{
+  background-color: #232323;
+  font-family: var(--font-family);
+}
+
+:root {
+  --font-family: "Satoshi", monospace;
+  --font-size: 24px;
+}
+
+.pt-10{
+  padding-top: 10px;
+}

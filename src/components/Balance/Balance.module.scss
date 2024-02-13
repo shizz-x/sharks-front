@@ -1,0 +1,52 @@
+@import "../../styles/index";
+
+$min-height: 40vh;
+
+.balance{
+  opacity: 1;
+  min-height: $min-height;
+
+  @keyframes shrink {
+    0% {
+      height: auto;
+      min-height: auto;
+      opacity: 1;
+    }
+    50%{
+      overflow: hidden;
+      opacity: 0;
+    }
+    100%{
+      height: 0;
+      padding:0;
+      margin: 0;
+      min-height: 0;
+      overflow: hidden;
+      opacity: 0;
+    }
+  }
+  
+  &.hide{
+    animation: shrink .5s forwards;
+  }
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: center;
+
+  padding-bottom: 26px;
+  line-height: 30px;
+  color: white;
+  p{
+    margin: 0;
+    padding: 0;
+  }
+  .integer{
+    font-size: 64px;
+    font-weight: bold;
+  }
+  .fractional{
+    font-size: 32px;
+  }
+}
