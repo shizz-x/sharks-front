@@ -189,10 +189,11 @@ const parseTransactions = (transactions, userWalletAddress) => {
   let parsedTransactions = [];
   transactions.map((trx) => {
     if (trx.type == "Transfer") {
+      console.log(trx);
       let transactionDate = new Date(trx.block_timestamp);
 
-      let operationTitle = trx.to === userWalletAddress ? "Sent" : "Received";
-      let operationType = trx.to === userWalletAddress ? 3 : 4;
+      let operationTitle = trx.to == userWalletAddress ? "Received" : "Sent";
+      let operationType = trx.to == userWalletAddress ? 4 : 3;
       let operationDate = null;
       let operationStatus = "Completed";
       let operationBalance = {
@@ -249,7 +250,10 @@ export default function Wallet(props) {
       </VideoBanner>
       <Container className={"pt-10"}>
         <TransactionsList
-          transactions={parseTransactions(userWallet.transactions)}
+          transactions={parseTransactions(
+            userWallet.transactions,
+            userWallet.address
+          )}
         />
       </Container>
     </MainLayout>
