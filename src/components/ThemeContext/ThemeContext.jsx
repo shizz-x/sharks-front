@@ -40,7 +40,6 @@ export function ThemeContext(props) {
 
   useEffect(() => {
     const savedTheme = saveTheme();
-    console.log(savedTheme);
     if (savedTheme) {
       setTheme(savedTheme);
     }
