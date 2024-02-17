@@ -1,0 +1,67 @@
+@import "../../styles/index";
+
+.transactionList{
+
+  .header{
+    font-size: 22px;
+    position: relative;
+    .filter{
+      border-radius: 50%;
+      border:1px solid #666666;
+      width: 30px;
+      height: 30px;
+      display: block;
+      position: absolute;
+      right: 0;
+      top:0;
+      cursor: pointer;
+      svg{
+        vertical-align: 0;
+        margin-left: 4px;
+        rect{
+          fill: themeFontColor() !important;
+        }
+      }
+    }
+  }
+  .list{
+    margin-top: 15px;
+    .item{
+      display: flex;
+      justify-content: start;
+
+      .icon{
+        width: 44px;
+        padding-top: 10px;
+        :global(.svg-stroke){
+          stroke: themeFontColor() !important;
+        }
+        :global(.svg-fill){
+          fill: themeFontColor() !important;
+        }
+      }
+      .info{
+        position: relative;
+        width: 100%;
+        .status{
+          font-size: 12px;
+          color:#666666;
+          &.failed{
+            color:#DB3B81;
+            font-weight: bold;
+          }
+        }
+
+        .balance{
+          position: absolute;
+          top: 18px;
+          right: 50px;
+          text-align: right;
+          font-weight: bold;
+        }
+
+      }
+    }
+  }
+
+}

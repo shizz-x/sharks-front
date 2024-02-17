@@ -2,146 +2,142 @@ import { useEffect, useState } from "react";
 import Context from "./TronContex";
 import UseAccessContext from "../AccessContext/UseAccessContext";
 import TronWeb from "tronweb";
-import { decode } from "../../utils/cypher-cbc";
-import distrAbi from "./ABI/distr";
-import trc20Abi from "./ABI/trc20";
-export default function TronContextProvider({ children }) {
-  const [tronWeb, setSetTronWeb] = useState(undefined);
-  const [walletAddress, setWalletAddress] = useState(undefined);
-  const [walletBalance, setWalletBalance] = useState(0);
-  const [walletEnergy, setWalletEnergy] = useState(0);
-  const [avaliableTokens, setAvaliableTokens] = useState([]);
-  const [walletTokens, setWalletTokens] = useState([]);
+import { WalletModel } from "../../models/wallet-model";
+import distributorContract from "./distributorContract";
+import trc20ContractModel from "./trc20ContractModel";
 
-  const { userData, avaliableTokensHandler } = UseAccessContext();
+import {
+  getAvaliableTokens,
+  getTransactionsForAnAddress,
+} from "../../modules/request-module";
 
-  const createTronWebInstance = async () => {
-    const privateKey = decode(userData.password, userData.privateKey);
-    const HttpProvider = TronWeb.providers.HttpProvider;
-    // const fullNode = new HttpProvider(
-    //   parseInt(process.env.REACT_APP_DEV)
-    //     ? process.env.REACT_APP_TRON_TESTNET
-    //     : process.env.REACT_APP_TRON_MAINNET
-    // );
-    // const solidityNode = new HttpProvider(
-    //   parseInt(process.env.REACT_APP_DEV)
-    //     ? process.env.REACT_APP_TRON_TESTNET
-    //     : process.env.REACT_APP_TRON_MAINNET
-    // );
-    // const eventServer = new HttpProvider(
-    //   parseInt(process.env.REACT_APP_DEV)
-    //     ? process.env.REACT_APP_TRON_TESTNET
-    //     : process.env.REACT_APP_TRON_MAINNET
-    // );
-    const fullNode = new HttpProvider("https://api.shasta.trongrid.io");
-    const solidityNode = new HttpProvider("https://api.shasta.trongrid.io");
-    const eventServer = new HttpProvider("https://api.shasta.trongrid.io");
+const defaultWallet = new WalletModel({
+  energy: {},
+  balance: "0",
+  address: "000000000",
+  tokens: [{ parsed: 0, sun: 0 }],
+  transactions: [],
+});
 
-    const tronWeb = new TronWeb(
-      fullNode,
-      solidityNode,
-      eventServer,
-      privateKey
+const RPC_URI = "https://api.shasta.trongrid.io";
+const derivePath = (mnemonic_phrase, quantity) => {
+  let result = [];
+  for (let index = 0; index < quantity; index++) {
+    result.push(
+      TronWeb.fromMnemonic(mnemonic_phrase, `m/44'/195'/0'/0/${index}`)
+        .privateKey.replace("0x", "")
+        .toUpperCase()
     );
-    console.log(tronWeb);
+  }
+  return result;
+};
+const createTronWebInstance = (privateKey) => {
+  const HttpProvider = TronWeb.providers.HttpProvider;
+  return new TronWeb(
+    new HttpProvider(RPC_URI),
+    new HttpProvider(RPC_URI),
+    new HttpProvider(RPC_URI),
+    privateKey
+  );
+};
 
-    setSetTronWeb(tronWeb);
+let tronWeb;
+
+export default function TronContextProvider({ children }) {
+  const [userWallet, setUserWallet] = useState(defaultWallet);
+
+  const { MNEMONIC_PHRASE } = UseAccessContext();
+
+  const startContext = () => {
+    const privateKeys = derivePath(MNEMONIC_PHRASE, 10);
+
+    tronWeb = createTronWebInstance(privateKeys[0]);
   };
+
   const getWalletResources = async () => {
+    const _getTokenBalance = async (walletAddress, contractAddress) => {
+      let contract = await tronWeb.contract().at(contractAddress);
+      let decimals = await contract.decimals().call();
+      let result = await contract.balanceOf(walletAddress).call();
+
+      return {
+        sun: result.toString(),
+        parsed: (result * 10 ** -decimals).toString(),
+      };
+    };
+
+    const avaliableTokens = await getAvaliableTokens();
+    const tokens = [];
+    let transactions = [];
+    for (let index = 0; index < avaliableTokens.length; index++) {
+      transactions.push(
+        ...(await getTransactionsForAnAddress(
+          tronWeb,
+          avaliableTokens[index].contractAddress,
+          tronWeb.defaultAddress.base58
+        ))
+      );
+
+      tokens.push(
+        Object.assign(
+          await _getTokenBalance(
+            tronWeb.defaultAddress.base58,
+            avaliableTokens[index].contractAddress
+          ),
+          avaliableTokens[index]
+        )
+      );
+    }
+
     const balance = await tronWeb.trx.getBalance(tronWeb.defaultAddress.base58);
     const energy = await tronWeb.trx.getAccountResources(
       tronWeb.defaultAddress.base58
     );
-    console.log(energy);
 
-    setWalletEnergy(energy.EnergyLimit - energy.EnergyUsed);
-    setWalletAddress(tronWeb.defaultAddress.base58);
-    setWalletBalance(balance);
+    setUserWallet(
+      new WalletModel({
+        energy,
+        balance,
+        address: tronWeb.defaultAddress.base58,
+        tokens,
+        transactions,
+      })
+    );
   };
-
-  const getWalletTokens = async () => {
-    const avaliableTokens = await avaliableTokensHandler();
-
-    if (avaliableTokens) {
-      setAvaliableTokens(avaliableTokens);
-    }
-  };
-
+  const getWalletTransactions = async () => {};
   const transferTokens = async (tokenAddress, amount, to) => {
     const contractDistributor = tronWeb.contract(
-      distrAbi,
-      process.env.REACT_APP_DISTRIBUTOR_CONTRACT_ADDRESS ||
-        "TNURd53iQZYryAmtij6s1KEDPQSeGysDVs"
+      distributorContract.ABI,
+      distributorContract.ADDRESS
     );
-    const contractToken = tronWeb.contract(trc20Abi, tokenAddress);
+    const contractToken = tronWeb.contract(
+      trc20ContractModel.ABI,
+      tokenAddress
+    );
 
     const txID = await contractToken
-      .approve(
-        process.env.REACT_APP_DISTRIBUTOR_CONTRACT_ADDRESS ||
-          "TNURd53iQZYryAmtij6s1KEDPQSeGysDVs",
-        amount
-      )
+      .approve(distributorContract.ADDRESS, amount)
       .send();
 
     const txID2 = await contractDistributor.transfer(to, tokenAddress).send();
-    console.log(txID2);
   };
 
   useEffect(() => {
-    if (userData.accessToken) {
-      createTronWebInstance();
+    if (MNEMONIC_PHRASE) {
+      startContext();
     }
-  }, [userData]);
+  }, [MNEMONIC_PHRASE]);
+
   useEffect(() => {
     if (tronWeb) {
       getWalletResources();
-      getWalletTokens();
     }
   }, [tronWeb]);
   useEffect(() => {
-    if (walletAddress) {
-      const _getTokenBalance = async (walletAddress, contractAddress) => {
-        let contract = await tronWeb.contract().at(contractAddress);
-        let result = await contract.balanceOf(walletAddress).call();
-        return result;
-      };
-      if (walletTokens.length + 1 > avaliableTokens.length) {
-        //bug fix
-        return;
-      }
-
-      avaliableTokens.forEach(async (token) => {
-        const tokenBalance = await _getTokenBalance(
-          walletAddress,
-          token.contractAddress
-        );
-        if (tokenBalance > 0) {
-          const balanceInTron = tokenBalance * 10 ** -token.decimals;
-          setWalletTokens((previosState, prop) => [
-            {
-              avaliable: tokenBalance,
-              avaliableFloat: balanceInTron,
-              ...token,
-            },
-            ...previosState,
-          ]);
-        }
-      });
+    if (userWallet) {
+      console.log(new Date().getMonthName());
     }
-  }, [avaliableTokens, walletAddress]);
+  }, [userWallet]);
 
-  return (
-    <Context.Provider
-      value={{
-        walletAddress,
-        walletBalance,
-        walletEnergy,
-        walletTokens,
-        tronWeb,
-        transferTokens,
-      }}
-    >
-      {children}
-    </Context.Provider>
-  );
+  return <Context.Provider value={{ userWallet }}>{children}</Context.Provider>;
 }

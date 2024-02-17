@@ -1,12 +1,13 @@
 module.exports = class WalletDto {
-  email;
-  id;
-  isActivated;
-  accessTkn;
-  privateKey;
+  address;
+  energy;
+  bandswith;
+  balance;
+  tokenBalance;
+  tokenDecimal;
   constructor(model) {
+    this.address = model.address;
     this.accessTkn = model.accessTkn;
-    this.email = model.user.email;
     this.id = model.user.id;
     this.isActivated = model.user.isActivated;
     this.privateKey = model.user.privateKey;

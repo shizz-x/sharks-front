@@ -1,0 +1,25 @@
+@import "../../styles/index";
+
+.walletMenu{
+  display: flex;
+  justify-content: space-between;
+  .item{
+    width: 60px;
+    color: white;
+     cursor: pointer;
+    .block{
+      text-align: center;
+
+      .btn{
+        display: inline-block;
+        border-radius: 20px;
+        padding: 15px 0;
+        background-color: rgba(255, 255, 255, 0.15);
+        width: 60px;
+        height: 60px;
+      }
+
+    }
+
+  }
+}

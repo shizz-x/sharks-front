@@ -1,0 +1,12 @@
+@import "../../styles/index";
+
+$min-height: 60vh;
+
+.logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: center;
+  min-height: $min-height;
+  padding-bottom: 26px;
+}

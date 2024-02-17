@@ -1,0 +1,21 @@
+@import "../../styles/index";
+
+.mobileCentered {
+  position: relative;
+
+  .containerBlock {
+    max-width: 430px;
+    width: 100%;
+    min-height: 100vh;
+    background-color: themeBackgroundColor();
+    color: themeFontColor();
+  }
+}
+
+@include media-breakpoint-up(xs){
+  .mobileCentered{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

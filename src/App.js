@@ -1,46 +1,38 @@
-import "./css/normilize.css";
-import "./css/index.css";
-import Header from "./components/Header/Header";
-import Login from "./pages/LoginPage/Login";
 import Register from "./pages/RegisterPage/Register";
-import Wallet from "./pages/WalletPage/Wallet";
-import React, { Component } from "react";
+import Wallet from "./pages/Wallet/Wallet";
+import React, { Component, useContext } from "react";
 import AccessContextProvider from "./contexts/AccessContext/AccessContextProvider";
-import TronContextProvider from "./contexts/TronContext/TronContextProvider";
-import { ToastContainer, Zoom } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import MaInBoard from "./components/MainBoard/MaInBoard";
+// import TronContextProvider from "./contexts/TronContext/TronContextProvider";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Index from "./pages/IndexPage/Index";
+import {
+  ThemeContext,
+  ThemeValue,
+} from "./components/ThemeContext/ThemeContext";
+import Create from "./pages/IndexPage/Create";
+import Shuffle from "./pages/IndexPage/Shuffle";
+import TronContextProvider from "./contexts/TronContext/TronContextProvider";
+
 export default class App extends Component {
   render() {
     return (
       <BrowserRouter>
         <AccessContextProvider>
           <TronContextProvider>
-            <Header></Header>
-            <MaInBoard>
+            <ThemeContext theme={ThemeValue.dark}>
               <Routes>
-                <Route index path="/login" element={<Login></Login>}></Route>
-                <Route path="/register" element={<Register></Register>}></Route>
+                <Route index path="/login" element={<Index></Index>}></Route>
+                <Route path="/createWallet" element={<Create></Create>}></Route>
+                <Route
+                  path="/shuffleWallet"
+                  element={<Shuffle></Shuffle>}
+                ></Route>
                 <Route path="/wallet" element={<Wallet></Wallet>}></Route>
+                <Route path="/register" element={<Register></Register>}></Route>
               </Routes>
-            </MaInBoard>
+            </ThemeContext>
           </TronContextProvider>
         </AccessContextProvider>
-        <ToastContainer
-          position="bottom-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          style={{ fontSize: "12px" }}
-          theme="light"
-          transition={Zoom}
-        />
       </BrowserRouter>
     );
   }

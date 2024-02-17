@@ -1,0 +1,58 @@
+@import "../../styles/index";
+
+
+$color: #666666;
+$selectColor: themeFontColor();
+
+.numList {
+  position: relative;
+  z-index: 2;
+  .line{
+    position: absolute;
+    z-index: 1;
+    top:0;
+    left: 20px;
+    width: 1px;
+    bottom: 0;
+    background-color: themeFontColor();
+  }
+  .item{
+    position: relative;
+    z-index: 2;
+    margin-bottom: 14px;
+    color: $color;
+
+    &.select{
+      color: $selectColor;
+
+      .circle{
+        border: 1px solid $selectColor;
+      }
+    }
+
+    .circle{
+      background-color: themeBackgroundColor();
+      border-radius: 50%;
+      font-size: 19px;
+      border: 1px solid $color;
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      padding-top: 4px;
+      margin-right: 18px;
+    }
+    .textBlock{
+      position: absolute;
+      left: 57px;
+      right: 0;
+      top:-7px;
+      font-size: 16px;
+      .title{
+        font-size: 22px;
+        font-weight: bold;
+      }
+    }
+
+  }
+}

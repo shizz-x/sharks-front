@@ -1,0 +1,53 @@
+$black-theme:(
+  "background" : #090909,
+  "font": #ffffff
+);
+
+$white-theme:(
+  "background" : #fff,
+  "font": #000
+);
+
+$btn-border-radius: 15px;
+
+$paddings:(
+  "content-top" : 20px,
+  "content-bottom" : 20px,
+  "content-left" : 20px,
+  "content-right": 20px
+);
+
+$content-gap: 10px;
+$container-padding-x: 40px;
+
+
+
+@function default_padding(){
+  @return map-get($paddings,"content-top")
+                  map-get($paddings,"content-left")
+                  map-get($paddings,"content-bottom")
+                  map-get($paddings,"content-right")
+}
+
+@function getThemeValue($theme,$value) {
+  @return map-get($theme,$value)
+}
+
+
+:root{
+  --background-shark-color: #090909;
+  --font-shark: #ffffff;
+}
+
+.sharkWhiteTheme{
+  --background-shark-color: #ffffff;
+  --font-shark: #000;
+}
+
+
+@function themeBackgroundColor() {
+  @return var(--background-shark-color);
+}
+@function themeFontColor() {
+  @return var(--font-shark);
+}
