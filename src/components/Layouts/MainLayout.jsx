@@ -8,7 +8,6 @@ export function MainLayout(props) {
   const setMnemonicHandler = (e) => {
     console.log(e);
     setMnemonicPhrase(e.target.value);
-    window.location.reload();
   };
   return (
     <div className={styled.mobileCentered}>
