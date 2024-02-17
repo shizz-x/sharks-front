@@ -18,5 +18,9 @@ export const isValidMnemonic = (mnemonic) => {
 };
 
 export const isMnemonicBackuped = () => {
-  return !isValidMnemonic(getMnemonicPhrase(true));
+  const mnemonic = getMnemonicPhrase(true);
+  if (mnemonic === null) {
+    return false;
+  }
+  return !isValidMnemonic(mnemonic);
 };

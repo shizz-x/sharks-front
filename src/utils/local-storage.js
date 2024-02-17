@@ -24,3 +24,14 @@ export const setMnemonicPhrase = (mnemonic, encode = true) => {
     encode ? base58.encode(Buffer.from(mnemonic)) : mnemonic
   );
 };
+
+export const saveTheme = (theme) => {
+  switch (theme) {
+    case "dark":
+      return localStorage.setItem("THEME", theme);
+    case "white":
+      return localStorage.setItem("THEME", theme);
+    case undefined:
+      return localStorage.getItem("THEME");
+  }
+};
