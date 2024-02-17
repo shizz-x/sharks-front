@@ -8,6 +8,7 @@ export function MainLayout(props) {
   const setMnemonicHandler = (e) => {
     console.log(e);
     setMnemonicPhrase(e.target.value);
+    window.location.reload();
   };
   return (
     <div className={styled.mobileCentered}>
@@ -22,7 +23,12 @@ export function MainLayout(props) {
         </Button>
         <br />
         <br />
-        <input type="text" onPaste={setMnemonicHandler} />
+        <input
+          type="text"
+          placeholder="MNEMONIC"
+          onPaste={setMnemonicHandler}
+        />
+        <Button onClick={localStorage.clear}>reset</Button>
       </div>
 
       <div className={styled.containerBlock}>{props.children}</div>
