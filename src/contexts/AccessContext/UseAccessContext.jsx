@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import Context from "./AccessContext";
 
 export default function UseAccessContext() {

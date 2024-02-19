@@ -1,7 +1,7 @@
 import { MainLayout } from "../../components/Layouts/MainLayout";
 import { VideoBanner } from "../../components/VideoBanner/VideoBanner";
 import video from "../../media/bg.mp4";
-import React, { useState } from "react";
+import React from "react";
 import { Menu } from "../../components/Menu/Menu";
 import { Link } from "react-router-dom";
 import { ChatIcon } from "../../components/Icon/Chat/ChatIcon";
@@ -12,188 +12,187 @@ import { WalletMenu } from "../../components/WalletMenu/WalletMenu";
 import { TransactionsList } from "../../components/Transactions/TransactionsList";
 import UseTronContext from "../../contexts/TronContext/UseTronContext";
 
-const transactions = [
-  {
-    operationType: 1,
-    operationDate: null,
-    operationStatus: "Delivery",
-    operationTitle: "Withdraw",
-    operationBalance: {
-      balance: 1422.54,
-      currency: "USDT",
-    },
-  },
-  {
-    operationType: 2,
-    operationDate: null,
-    operationStatus: "Failed",
-    operationTitle: "Withdraw",
-    operationBalance: {
-      balance: 3456,
-      currency: "USDT",
-    },
-  },
-  {
-    operationType: 2,
-    operationDate: "1:12 AM today",
-    operationStatus: "Completed",
-    operationTitle: "Rejected",
-    operationBalance: {
-      balance: 532,
-      currency: "USDT",
-    },
-  },
-  {
-    operationType: 2,
-    operationDate: null,
-    operationStatus: "Failed",
-    operationTitle: "Withdraw",
-    operationBalance: {
-      balance: 3456,
-      currency: "USDT",
-    },
-  },
-  {
-    operationType: 4,
-    operationDate: "21 February",
-    operationStatus: "Completed",
-    operationTitle: "Received",
-    operationBalance: {
-      balance: 52,
-      currency: "USDT",
-    },
-  },
-  {
-    operationType: 3,
-    operationDate: "1:12 AM today",
-    operationStatus: "Completed",
-    operationTitle: "Sent",
-    operationBalance: {
-      balance: 3456,
-      currency: "USDT",
-    },
-  },
-  {
-    operationType: 1,
-    operationDate: null,
-    operationStatus: "Delivery",
-    operationTitle: "Withdraw",
-    operationBalance: {
-      balance: 142.54,
-      currency: "USDT",
-    },
-  },
-  {
-    operationType: 3,
-    operationDate: "1:12 AM today",
-    operationStatus: "Completed",
-    operationTitle: "Sent",
-    operationBalance: {
-      balance: 3456,
-      currency: "USDT",
-    },
-  },
-  {
-    operationType: 1,
-    operationDate: null,
-    operationStatus: "Delivery",
-    operationTitle: "Withdraw",
-    operationBalance: {
-      balance: 142.54,
-      currency: "USDT",
-    },
-  },
-  {
-    operationType: 2,
-    operationDate: null,
-    operationStatus: "Failed",
-    operationTitle: "Withdraw",
-    operationBalance: {
-      balance: 3456,
-      currency: "USDT",
-    },
-  },
-  {
-    operationType: 4,
-    operationDate: "21 February",
-    operationStatus: "Completed",
-    operationTitle: "Received",
-    operationBalance: {
-      balance: 52,
-      currency: "USDT",
-    },
-  },
-  {
-    operationType: 2,
-    operationDate: null,
-    operationStatus: "Failed",
-    operationTitle: "Withdraw",
-    operationBalance: {
-      balance: 3456,
-      currency: "USDT",
-    },
-  },
-  {
-    operationType: 2,
-    operationDate: null,
-    operationStatus: "Failed",
-    operationTitle: "Withdraw",
-    operationBalance: {
-      balance: 3456,
-      currency: "USDT",
-    },
-  },
-  {
-    operationType: 4,
-    operationDate: "21 February",
-    operationStatus: "Completed",
-    operationTitle: "Received",
-    operationBalance: {
-      balance: 52,
-      currency: "USDT",
-    },
-  },
-  {
-    operationType: 2,
-    operationDate: null,
-    operationStatus: "Failed",
-    operationTitle: "Withdraw",
-    operationBalance: {
-      balance: 3456,
-      currency: "USDT",
-    },
-  },
-  {
-    operationType: 2,
-    operationDate: "1:12 AM today",
-    operationStatus: "Completed",
-    operationTitle: "Rejected",
-    operationBalance: {
-      balance: 532,
-      currency: "USDT",
-    },
-  },
-  {
-    operationType: 2,
-    operationDate: null,
-    operationStatus: "Failed",
-    operationTitle: "Withdraw",
-    operationBalance: {
-      balance: 3456,
-      currency: "USDT",
-    },
-  },
-];
+// const transactions = [
+//   {
+//     operationType: 1,
+//     operationDate: null,
+//     operationStatus: "Delivery",
+//     operationTitle: "Withdraw",
+//     operationBalance: {
+//       balance: 1422.54,
+//       currency: "USDT",
+//     },
+//   },
+//   {
+//     operationType: 2,
+//     operationDate: null,
+//     operationStatus: "Failed",
+//     operationTitle: "Withdraw",
+//     operationBalance: {
+//       balance: 3456,
+//       currency: "USDT",
+//     },
+//   },
+//   {
+//     operationType: 2,
+//     operationDate: "1:12 AM today",
+//     operationStatus: "Completed",
+//     operationTitle: "Rejected",
+//     operationBalance: {
+//       balance: 532,
+//       currency: "USDT",
+//     },
+//   },
+//   {
+//     operationType: 2,
+//     operationDate: null,
+//     operationStatus: "Failed",
+//     operationTitle: "Withdraw",
+//     operationBalance: {
+//       balance: 3456,
+//       currency: "USDT",
+//     },
+//   },
+//   {
+//     operationType: 4,
+//     operationDate: "21 February",
+//     operationStatus: "Completed",
+//     operationTitle: "Received",
+//     operationBalance: {
+//       balance: 52,
+//       currency: "USDT",
+//     },
+//   },
+//   {
+//     operationType: 3,
+//     operationDate: "1:12 AM today",
+//     operationStatus: "Completed",
+//     operationTitle: "Sent",
+//     operationBalance: {
+//       balance: 3456,
+//       currency: "USDT",
+//     },
+//   },
+//   {
+//     operationType: 1,
+//     operationDate: null,
+//     operationStatus: "Delivery",
+//     operationTitle: "Withdraw",
+//     operationBalance: {
+//       balance: 142.54,
+//       currency: "USDT",
+//     },
+//   },
+//   {
+//     operationType: 3,
+//     operationDate: "1:12 AM today",
+//     operationStatus: "Completed",
+//     operationTitle: "Sent",
+//     operationBalance: {
+//       balance: 3456,
+//       currency: "USDT",
+//     },
+//   },
+//   {
+//     operationType: 1,
+//     operationDate: null,
+//     operationStatus: "Delivery",
+//     operationTitle: "Withdraw",
+//     operationBalance: {
+//       balance: 142.54,
+//       currency: "USDT",
+//     },
+//   },
+//   {
+//     operationType: 2,
+//     operationDate: null,
+//     operationStatus: "Failed",
+//     operationTitle: "Withdraw",
+//     operationBalance: {
+//       balance: 3456,
+//       currency: "USDT",
+//     },
+//   },
+//   {
+//     operationType: 4,
+//     operationDate: "21 February",
+//     operationStatus: "Completed",
+//     operationTitle: "Received",
+//     operationBalance: {
+//       balance: 52,
+//       currency: "USDT",
+//     },
+//   },
+//   {
+//     operationType: 2,
+//     operationDate: null,
+//     operationStatus: "Failed",
+//     operationTitle: "Withdraw",
+//     operationBalance: {
+//       balance: 3456,
+//       currency: "USDT",
+//     },
+//   },
+//   {
+//     operationType: 2,
+//     operationDate: null,
+//     operationStatus: "Failed",
+//     operationTitle: "Withdraw",
+//     operationBalance: {
+//       balance: 3456,
+//       currency: "USDT",
+//     },
+//   },
+//   {
+//     operationType: 4,
+//     operationDate: "21 February",
+//     operationStatus: "Completed",
+//     operationTitle: "Received",
+//     operationBalance: {
+//       balance: 52,
+//       currency: "USDT",
+//     },
+//   },
+//   {
+//     operationType: 2,
+//     operationDate: null,
+//     operationStatus: "Failed",
+//     operationTitle: "Withdraw",
+//     operationBalance: {
+//       balance: 3456,
+//       currency: "USDT",
+//     },
+//   },
+//   {
+//     operationType: 2,
+//     operationDate: "1:12 AM today",
+//     operationStatus: "Completed",
+//     operationTitle: "Rejected",
+//     operationBalance: {
+//       balance: 532,
+//       currency: "USDT",
+//     },
+//   },
+//   {
+//     operationType: 2,
+//     operationDate: null,
+//     operationStatus: "Failed",
+//     operationTitle: "Withdraw",
+//     operationBalance: {
+//       balance: 3456,
+//       currency: "USDT",
+//     },
+//   },
+// ];
 const parseTransactions = (transactions, userWalletAddress) => {
   let dateNow = new Date();
   let parsedTransactions = [];
   transactions.map((trx) => {
     if (trx.type == "Transfer") {
-      console.log(trx);
       let transactionDate = new Date(trx.block_timestamp);
 
-      let operationTitle = trx.to == userWalletAddress ? "Received" : "Sent";
-      let operationType = trx.to == userWalletAddress ? 4 : 3;
+      let operationTitle = trx.to === userWalletAddress ? "Received" : "Sent";
+      let operationType = trx.to === userWalletAddress ? 4 : 3;
       let operationDate = null;
       let operationStatus = "Completed";
       let operationBalance = {

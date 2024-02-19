@@ -17,8 +17,6 @@ export default function AccessContextProvider({ children }) {
   useEffect(() => {
     const randomMnemonicToSet = generateMnemonic();
     if (!isMnemonicBackuped()) {
-      console.log("NOT BACKUPED");
-
       setMnemonicPhrase(randomMnemonicToSet, false);
       setMnemonicPhraseState(randomMnemonicToSet);
       navigate("/login");

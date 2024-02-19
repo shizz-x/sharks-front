@@ -1,6 +1,6 @@
 import Register from "./pages/RegisterPage/Register";
 import Wallet from "./pages/Wallet/Wallet";
-import React, { Component, useContext } from "react";
+import React, { Component } from "react";
 import AccessContextProvider from "./contexts/AccessContext/AccessContextProvider";
 // import TronContextProvider from "./contexts/TronContext/TronContextProvider";
 import { BrowserRouter, Routes, Route } from "react-router-dom";

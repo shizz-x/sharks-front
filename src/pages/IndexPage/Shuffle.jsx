@@ -1,7 +1,7 @@
 import { MainLayout } from "../../components/Layouts/MainLayout";
 import { VideoBanner } from "../../components/VideoBanner/VideoBanner";
 import video from "../../media/bg.mp4";
-import React, { useState } from "react";
+import React from "react";
 import { Menu } from "../../components/Menu/Menu";
 import { Link } from "react-router-dom";
 import { ArrowIcon } from "../../components/Icon/Arrow/ArrowIcon";

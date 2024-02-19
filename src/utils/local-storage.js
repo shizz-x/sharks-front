@@ -1,5 +1,4 @@
 import base58 from "bs58";
-import { func } from "prop-types";
 
 export const getMnemonicPhrase = (encode = false) => {
   try {
@@ -12,10 +11,6 @@ export const getMnemonicPhrase = (encode = false) => {
   } catch {
     return null;
   }
-};
-
-window.encodeMnem = function (mnemonic) {
-  console.log(base58.encode(Buffer.from(mnemonic)));
 };
 
 export const setMnemonicPhrase = (mnemonic, encode = true) => {
@@ -33,5 +28,7 @@ export const saveTheme = (theme) => {
       return localStorage.setItem("THEME", theme);
     case undefined:
       return localStorage.getItem("THEME");
+    default:
+      break;
   }
 };

@@ -1,7 +1,7 @@
 import axios from "axios";
 export const getAvaliableTokens = async () => {
   try {
-    const response = await axios.get("https://gogi.meme/api/assets", {});
+    const response = await axios.get("http://localhost:5001/api/assets", {});
     return response.data.avaliableTokens;
   } catch (error) {
     return null;

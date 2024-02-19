@@ -1,17 +1,9 @@
 import styled from "./MainLayout.module.scss";
-import React, { useEffect } from "react";
+import React from "react";
 import { useSharkTheme } from "../ThemeContext/ThemeContext";
-import { Button, InputGroup } from "react-bootstrap";
-import { setMnemonicPhrase } from "../../utils/local-storage";
-import { theme } from "../../utils/local-storage";
+import { Button } from "react-bootstrap";
 export function MainLayout(props) {
   const { whiteMode, darkMode } = useSharkTheme();
-  const setMnemonicHandler = (e) => {
-    setMnemonicPhrase(e.target.value);
-  };
-  const resetLocalStorageHandler = () => {
-    localStorage.clear();
-  };
 
   return (
     <div className={styled.mobileCentered}>
@@ -24,14 +16,6 @@ export function MainLayout(props) {
         <Button onClick={() => darkMode()} variant={"outline-light"}>
           Dark
         </Button>
-        <br />
-        <br />
-        <input
-          type="text"
-          placeholder="MNEMONIC"
-          onPaste={setMnemonicHandler}
-        />
-        <Button onClick={resetLocalStorageHandler}>reset</Button>
       </div>
 
       <div className={styled.containerBlock}>{props.children}</div>

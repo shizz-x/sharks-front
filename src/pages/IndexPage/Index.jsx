@@ -6,8 +6,23 @@ import { Link } from "react-router-dom";
 import React from "react";
 import { Container } from "react-bootstrap";
 import { Logo } from "../../components/Logo/Logo";
+import { setMnemonicPhrase } from "../../utils/local-storage";
+import { isValidMnemonic } from "../../utils/mnemonic";
 
 export default function Index(props) {
+  const setMnemonicHandler = () => {
+    const mnemonic = prompt("Your mnemonic phrase");
+
+    if (isValidMnemonic(mnemonic)) {
+      setMnemonicPhrase(mnemonic);
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    } else {
+      alert("Mnemonic is not valid");
+    }
+  };
+
   return (
     <MainLayout>
       <VideoBanner video={video} borderRadius={true}>
@@ -17,7 +32,9 @@ export default function Index(props) {
         <Link to={"/createWallet"} style={{ textDecoration: "none" }}>
           <Button className={"fw-bold"}>Create New wallet</Button>
         </Link>
-        <Button withoutBorder={true}>Import wallet</Button>
+        <Button onClick={setMnemonicHandler} withoutBorder={true}>
+          Import wallet
+        </Button>
       </Container>
     </MainLayout>
   );
