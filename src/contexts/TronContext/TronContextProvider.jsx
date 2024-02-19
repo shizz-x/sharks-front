@@ -15,6 +15,7 @@ const defaultWallet = new WalletModel({
   energy: {},
   balance: "0",
   address: "0",
+  addressHex: "0",
   tokens: [{ parsed: 0, sun: 0 }],
   transactions: [],
 });
@@ -104,6 +105,7 @@ export default function TronContextProvider({ children }) {
         energy,
         balance,
         address: tronWeb.defaultAddress.base58,
+        addressHex: tronWeb.defaultAddress.hex,
         tokens,
         transactions,
       })
@@ -153,31 +155,25 @@ export default function TronContextProvider({ children }) {
         let contract = await tronWeb.contract().at(trc20ContractAddress);
         //Use watch to listen for events emitted by a smart contract method. You can define functions to be executed when certain events are caught.
         //contract.eventname.watch(callback)
-        (await contract) &&
-          contract.Transfer().watch((err, event) => {
-            if (err) return console.error('Error with "Message" event:', err);
+        contract.Transfer().watch((err, event) => {
+          if (err) return console.error('Error with "Message" event:', err);
 
-            console.group("New event received");
-            console.log("- Contract Address:", event.contract);
-            console.log("- Event Name:", event.name);
-            console.log("- Transaction:", event.transaction);
-            console.log("- Block number:", event.block);
-            console.log("- Result:", event.result, "\n");
-            console.groupEnd();
+          console.group("New event received");
+          console.log("- Contract Address:", event.contract);
+          console.log("- Event Name:", event.name);
+          console.log("- Transaction:", event.transaction);
+          console.log("- Block number:", event.block);
+          console.log("- Result:", event.result, "\n");
+          console.groupEnd();
 
-            if (
-              event.result.from == userWallet.address ||
-              event.result.to == userWallet.address
-            ) {
-              getRecentTransactions().then((result) => {
-                console.log(result);
-                setUserWallet((prevState) => ({
-                  ...prevState,
-                  transactions: result,
-                }));
-              });
-            }
-          });
+          if (
+            event.result.from === userWallet.addressHex ||
+            event.result.to === userWallet.addressHex
+          ) {
+            console.log("INVOKE");
+            getWalletResources();
+          }
+        });
       })();
     }
   }, [userWallet]);
