@@ -34,7 +34,7 @@ const numList = [
 export default function Create(props) {
     const [show,setShow] = useState(false);
     return (
-        <MainLayout>
+        <>
             <VideoBanner video={video} borderRadius={true}>
                 <Menu>
                     <Menu.Left><Link to={-1}><ArrowIcon /></Link></Menu.Left>
@@ -69,6 +69,6 @@ export default function Create(props) {
             <Container className={'pt-10'}>
                 <NumList list={numList}></NumList>
             </Container>
-        </MainLayout>
+        </>
     )
 }

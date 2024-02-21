@@ -1,7 +1,7 @@
 import {MainLayout} from "../../components/Layouts/MainLayout";
 import {VideoBanner} from "../../components/VideoBanner/VideoBanner";
 import video from "../../media/bg.mp4";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Menu} from "../../components/Menu/Menu";
 import {Link} from "react-router-dom";
 import {ChatIcon} from "../../components/Icon/Chat/ChatIcon";
@@ -10,6 +10,8 @@ import {SettingIcon} from "../../components/Icon/Setting/SettingIcon";
 import {Balance} from "../../components/Balance/Balance";
 import {WalletMenu} from "../../components/WalletMenu/WalletMenu";
 import {TransactionsList} from "../../components/Transactions/TransactionsList";
+import {useSecurityPassword} from "../../components/SecurityPassword/SecurityPasswordContext";
+import {Button} from "../../components/Button/Button";
 
 
 const transactions = [
@@ -186,9 +188,49 @@ const transactions = [
 ]
 
 export default function Wallet(props) {
+    const {showPasswordWindow,setCheckHandler} = useSecurityPassword();
+
+
+    /********* Установка и проверка пина ********************/
+    const [firstCode,setFirstCode]= useState('');
+
+
+    //Устанавливаем пин
+    const pinCodeHandlerFirst = (pin)=>{
+        console.log(pin);
+        const password = pin.join('');
+        setFirstCode(password);
+        return true;
+    }
+
+    // проверяем что установленный пин корректный
+    const pinCodeHandlerSecond = (pin)=>{
+        console.log(pin);
+        const pass= pin.join('');
+        return firstCode === pass;
+    }
+
+    //Очищаем значения сохраненного пина и вызываем окно
+    const startSetPinHandler =()=>{
+        setFirstCode('');
+        showPasswordWindow('Set security password','Incorrect security password');
+
+    }
+
+    //Тут проверяем появился ли пин, если да, то вызываем окно с другими заголовками и в качестве проверки используем второй хендлер
+    useEffect(()=>{
+        if(firstCode!=='') {
+            setCheckHandler(pinCodeHandlerSecond);
+            showPasswordWindow('Repeat security password', 'Incorrect security password');
+        } else {
+            setCheckHandler(pinCodeHandlerFirst);
+        }
+    },[firstCode])
+
+    /** ------------------------------------------------------------------   */
 
     return (
-        <MainLayout>
+        <>
             <VideoBanner video={video} borderRadius={true} sticky={true}>
                 <Menu>
                     <Menu.Left><Link to={-1}><SettingIcon /></Link></Menu.Left>
@@ -203,8 +245,11 @@ export default function Wallet(props) {
                 </Container>
             </VideoBanner>
             <Container className={'pt-10'}>
+                <Button onClick={startSetPinHandler}>
+                    Показать окно пароля
+                </Button>
                 <TransactionsList transactions={transactions} />
             </Container>
-        </MainLayout>
+        </>
     )
 }

@@ -18,8 +18,11 @@ $paddings:(
 );
 
 $content-gap: 10px;
+
 $container-padding-x: 40px;
 
+$max-width-window: 430px;
+$padding-left-right: 13%;
 
 
 @function default_padding(){

@@ -38,7 +38,7 @@ function shuffleArray(arr) {
 export default function Shuffle(props) {
 
     return (
-        <MainLayout>
+        <>
             <VideoBanner video={video} borderRadius={true}>
                 <Menu>
                     <Menu.Left><Link to={-1}><ArrowIcon /></Link></Menu.Left>
@@ -62,6 +62,6 @@ export default function Shuffle(props) {
             <Container className={'pt-10'}>
                 <NumList list={numList}></NumList>
             </Container>
-        </MainLayout>
+        </>
     )
 }

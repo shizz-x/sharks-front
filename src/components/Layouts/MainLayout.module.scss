@@ -4,7 +4,7 @@
   position: relative;
 
   .containerBlock {
-    max-width: 430px;
+    max-width: $max-width-window;
     width: 100%;
     min-height: 100vh;
     background-color: themeBackgroundColor();

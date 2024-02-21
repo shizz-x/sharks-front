@@ -10,7 +10,7 @@ import {Logo} from "../../components/Logo/Logo";
 
 export default function Index(props) {
     return (
-        <MainLayout>
+        <>
             <VideoBanner video={video} borderRadius={true}>
                 <Logo />
             </VideoBanner>
@@ -20,6 +20,6 @@ export default function Index(props) {
                 </Link>
                 <Button withoutBorder={true}>Import wallet</Button>
             </Container>
-        </MainLayout>
+        </>
     )
 }

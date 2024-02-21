@@ -1,0 +1,30 @@
+@import "../../styles/index";
+
+.sendMenu{
+  display: flex;
+  justify-content: space-between;
+  .item{
+
+    .btn{
+      border-radius: 15px;
+      height: 55px;
+      padding: 13px 0;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .icon{
+      margin-right: 10px;
+      vertical-align: 2px;
+    }
+
+    .btnWithText{
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
+    .btnQR{
+      width: 55px;
+    }
+
+  }
+}
