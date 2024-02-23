@@ -1,5 +1,7 @@
+$black-color: #0c0c0c;
+
 $black-theme:(
-  "background" : #090909,
+  "background" : $black-color,
   "font": #ffffff
 );
 
@@ -9,6 +11,8 @@ $white-theme:(
 );
 
 $btn-border-radius: 15px;
+
+$top-phone-padding: 56px;
 
 $paddings:(
   "content-top" : 20px,
@@ -38,7 +42,7 @@ $padding-left-right: 13%;
 
 
 :root{
-  --background-shark-color: #090909;
+  --background-shark-color: #0c0c0c;
   --font-shark: #ffffff;
 }
 

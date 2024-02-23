@@ -8,12 +8,13 @@ MenuButton.propTypes = {
     classBlock:PropTypes.string,
     classButton:PropTypes.string,
     buttonTitle:PropTypes.string,
+    onClick:PropTypes.func,
     link: PropTypes.string
 }
 export function MenuButton(props) {
     return(
         <div className={classNames(styles.item,props.classItem)}>
-            <div className={classNames(styles.block,'float-end',props.classBlock)}>
+            <div className={classNames(styles.block,'float-end',props.classBlock)} onClick={props.onClick}>
                 <Link to={props.link}>
                     <span className={classNames(styles.btn,props.classButton)}>{props.children}</span>
                     {props.buttonTitle}

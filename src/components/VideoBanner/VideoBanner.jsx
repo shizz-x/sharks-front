@@ -11,8 +11,8 @@ VideoBanner.propTypes = {
 export function VideoBanner(props) {
     return (
         <div className={classNames(styles.banner,props.borderRadius?styles.round:null,props.sticky?styles.sticky:null)}>
-            <video autoPlay loop muted playsInline id="myVideo">
-                <source src={props.video} type="video/mp4"/>
+            <video autoPlay loop muted playsInline id="myVideo" src={props.video}>
+
             </video>
             <div className={styles.containerVideo}>
                 {props.children}

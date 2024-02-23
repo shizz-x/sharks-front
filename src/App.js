@@ -12,34 +12,39 @@ import Shuffle from "./pages/IndexPage/Shuffle";
 import {SecurityPasswordContext} from "./components/SecurityPassword/SecurityPasswordContext";
 import {MainLayout} from "./components/Layouts/MainLayout";
 import {Send} from "./pages/Send/Send";
+import {SiteMessageContext} from "./components/SiteMessage/SiteMessageContext";
+import {Amount} from "./pages/Send/Amount";
 
 export default class App extends Component {
-  render() {
+    render() {
 
-    return (
-      <BrowserRouter>
-        <AccessContextProvider>
-          <TronContextProvider>
+        return (
+            <BrowserRouter>
+                <AccessContextProvider>
+                    <TronContextProvider>
+                        <ThemeContext theme={ThemeValue.dark}>
+                            <MainLayout>
+                                <SiteMessageContext>
+                                    <SecurityPasswordContext>
 
-              <ThemeContext theme={ThemeValue.dark}>
-                  <MainLayout>
-                  <SecurityPasswordContext>
-                  <Routes>
-                    <Route index path="/login" element={<Index></Index>}></Route>
-                    <Route path="/createWallet" element={<Create></Create>}></Route>
-                      <Route path="/send" element={<Send></Send>}></Route>
-                    <Route path="/shuffleWallet" element={<Shuffle></Shuffle>}></Route>
-                      <Route path="/wallet" element={<Wallet></Wallet>}></Route>
-                    <Route path="/login2" element={<Login></Login>}></Route>
-                    <Route path="/register" element={<Register></Register>}></Route>
-                  </Routes>
-                  </SecurityPasswordContext>
-                  </MainLayout>
-              </ThemeContext>
+                                        <Routes>
+                                            <Route index path="/login" element={<Index></Index>}></Route>
+                                            <Route path="/createWallet" element={<Create></Create>}></Route>
+                                            <Route path="/send" element={<Send></Send>}></Route>
+                                            <Route path="/amount" element={<Amount></Amount>}></Route>
+                                            <Route path="/shuffleWallet" element={<Shuffle></Shuffle>}></Route>
+                                            <Route path="/wallet" element={<Wallet></Wallet>}></Route>
+                                            <Route path="/login2" element={<Login></Login>}></Route>
+                                            <Route path="/register" element={<Register></Register>}></Route>
+                                        </Routes>
 
-          </TronContextProvider>
-        </AccessContextProvider>
-      </BrowserRouter>
-    );
-  }
+                                    </SecurityPasswordContext>
+                                </SiteMessageContext>
+                            </MainLayout>
+                        </ThemeContext>
+                    </TronContextProvider>
+                </AccessContextProvider>
+            </BrowserRouter>
+        );
+    }
 }

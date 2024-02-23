@@ -6,7 +6,7 @@
   width: 100%;
   box-shadow: 0 20px 57px -20px rgba(0, 0, 0, 0.47);
   padding-bottom: 26px;
-  padding-top: 56px;
+  padding-top: $top-phone-padding;
   margin-bottom: 20px;
   &.sticky{
     position: sticky;

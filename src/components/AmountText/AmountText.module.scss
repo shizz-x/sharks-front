@@ -1,0 +1,21 @@
+
+.amount{
+  color: white;
+  padding-right: 10px;
+  border-right: 4px solid white;
+  display: inline-block;
+
+  .currency{
+    font-size: 60px;
+    font-weight: bold;
+    padding-right: 10px;
+  }
+  .int{
+    font-size: 60px;
+    font-weight: bold;
+  }
+  .part{
+    font-size: 30px;
+    font-weight: bold;
+  }
+}

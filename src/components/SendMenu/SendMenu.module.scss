@@ -3,7 +3,20 @@
 .sendMenu{
   display: flex;
   justify-content: space-between;
+  gap: 15px;
+
+  .first{
+    width: 55px;
+  }
+  .other{
+    flex-grow: 1;
+  }
+
   .item{
+
+    .block{
+      width: 100%;
+    }
 
     .btn{
       border-radius: 15px;
@@ -18,8 +31,7 @@
     }
 
     .btnWithText{
-      padding-left: 30px;
-      padding-right: 30px;
+      display: block;
     }
 
     .btnQR{
