@@ -17,7 +17,7 @@ SendMenu.propTypes={
     showQRButton:PropTypes.bool
 }
 
-export function SendMenu(props) {
+export function SendMenu({showQRButton=false,...props}) {
 
     return(
         <div className={styles.sendMenu}>

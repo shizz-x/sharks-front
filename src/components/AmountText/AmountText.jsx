@@ -5,7 +5,8 @@ import style from "./AmountText.module.scss"
 
 AmountText.propTypes = {
     currency: PropTypes.string.isRequired,
-    amount: PropTypes.number.isRequired
+    amount: PropTypes.number.isRequired,
+    simpleClass:PropTypes.bool
 }
 
 function formatNumber(amount) {
@@ -35,14 +36,17 @@ function formatNumber(amount) {
 export function AmountText(props) {
 
     const amount = formatNumber(props.amount);
-
+    const Cont = props.simpleClass?
+        (p)=><>{p.children}</>
+        :
+        (p)=> <Container className={classNames('text-center')}>{p.children}</Container>
     return(
-        <Container className={classNames('text-center')}>
-            <div className={style.amount}>
+        <Cont>
+            <div className={props.simpleClass?style.simpleAmount:style.amount}>
                 <span className={style.currency}>{props.currency}</span>
                 <span className={style.int}>{amount.int}</span>
                 <span className={style.part}>{amount.part}</span>
             </div>
-        </Container>
+        </Cont>
     );
 }

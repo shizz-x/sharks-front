@@ -2,6 +2,7 @@ import classNames from "classnames";
 import style from "./KeyPad.module.scss";
 import {BackspaceIcon} from "../Icon/Backspace/BackspaceIcon";
 import PropTypes from "prop-types";
+import {ShowDependencies} from "../ShowDependencies/ShowDependencies";
 
 
 export const BACKSPACE_BTN = 'backspace';
@@ -23,12 +24,18 @@ export const NUMLIST_WITH_DOT = [
 KeyPad.propTypes = {
     handleDelete: PropTypes.func.isRequired,
     handleButton: PropTypes.func.isRequired,
-    numPad: PropTypes.array
+    numPad: PropTypes.array,
+    flexPosition: PropTypes.bool,
+    title: PropTypes.string,
+
 }
 
-export function KeyPad({numPad=NUMLIST_WITHOUT_DOT,...props}) {
+export function KeyPad({numPad=NUMLIST_WITHOUT_DOT,flexPosition=false,...props}) {
     return(
-        <div className={classNames(style.numbersBlock)}>
+        <div className={classNames(style.numbersBlock,flexPosition?null:style.bottomPosition)}>
+            <ShowDependencies dependencies={props.title!==undefined}>
+                <h3>{props.title}</h3>
+            </ShowDependencies>
             {numPad.map((item,key)=>(
                 <div className={style.rowNum} key={key}>
                     {item.map((num,keyNum)=>(

@@ -14,6 +14,7 @@ import {MainLayout} from "./components/Layouts/MainLayout";
 import {Send} from "./pages/Send/Send";
 import {SiteMessageContext} from "./components/SiteMessage/SiteMessageContext";
 import {Amount} from "./pages/Send/Amount";
+import {Summary} from "./pages/Send/Summary";
 
 export default class App extends Component {
     render() {
@@ -32,6 +33,7 @@ export default class App extends Component {
                                             <Route path="/createWallet" element={<Create></Create>}></Route>
                                             <Route path="/send" element={<Send></Send>}></Route>
                                             <Route path="/amount" element={<Amount></Amount>}></Route>
+                                            <Route path="/summary" element={<Summary></Summary>}></Route>
                                             <Route path="/shuffleWallet" element={<Shuffle></Shuffle>}></Route>
                                             <Route path="/wallet" element={<Wallet></Wallet>}></Route>
                                             <Route path="/login2" element={<Login></Login>}></Route>
