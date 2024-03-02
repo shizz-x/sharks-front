@@ -1,0 +1,21 @@
+@import "../../styles/index";
+
+
+.infoItem{
+  margin-bottom: 20px;
+  .title{
+    color: #6D6D6D;
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  .text{
+    word-break: break-all;
+    display: flex;
+    align-items: center;
+
+    .copy{
+      margin-left: 42px;
+    }
+
+  }
+}

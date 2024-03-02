@@ -1,12 +1,13 @@
 import PropTypes from "prop-types";
 
 ShowDependencies.propTypes = {
-    dependencies: PropTypes.bool.isRequired
+    dependencies: PropTypes.bool
 }
 
 export function ShowDependencies(props) {
+    const dep = props.dependencies!==undefined?props.dependencies:false;
 
-    if(!props.dependencies) {
+    if(!dep) {
         return <></>
     } else {
         return (

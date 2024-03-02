@@ -1,0 +1,18 @@
+@import "../../styles/index";
+
+.statusPending{
+  background-image: url("../../media/bg_pending.png");
+  background-size: cover;
+  padding: 5px 14px;
+  border-radius: 70px;
+  .spinner{
+    width: 14px;
+    height: 14px;
+    border: none;
+    background-image: url("../../media/spiner_bg.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: 8px;
+    vertical-align: -1px;
+  }
+}

@@ -1,0 +1,17 @@
+@import "../../styles/index";
+
+.titleWithRightBlock{
+  position: relative;
+  margin-bottom: 20px;
+
+  .text{
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .rightBlock{
+    position: absolute;
+    right: 0;
+    top:0;
+  }
+}

@@ -1,7 +1,7 @@
 import {VideoBanner} from "../../components/VideoBanner/VideoBanner";
 import video from "../../media/wiolet_background.mp4";
 import {Menu} from "../../components/Menu/Menu";
-import {Link} from "react-router-dom";
+import {Link, useRoutes} from "react-router-dom";
 import {ArrowIcon} from "../../components/Icon/Arrow/ArrowIcon";
 import {ChatIcon} from "../../components/Icon/Chat/ChatIcon";
 import React, {useEffect} from "react";
@@ -14,12 +14,15 @@ import av3 from '../../tmp/caracter 28.png';
 import {AdressString} from "../../components/AdressString/AdressString";
 import {AmountText} from "../../components/AmountText/AmountText";
 import {useSecurityPassword} from "../../components/SecurityPassword/SecurityPasswordContext";
+import {useNavigate} from 'react-router-dom';
 
 export function Summary(props) {
     const {showPasswordWindow,setCheckHandler} = useSecurityPassword();
+    const navigate = useNavigate();
 
     const passHandler=(num) =>{
-        console.log(num)
+        navigate('/status');
+        return true;
     }
 
     useEffect(()=>{
@@ -46,7 +49,7 @@ export function Summary(props) {
                 </Menu>
 
                 <SummaryBlock>
-                    <Container >
+                    <Container>
                         <Row>
                             <Col xs={8}><ContactString name={'Justin Calzoni'} image={av3}  /></Col>
                             <Col xs={4} className={'text-end'}><SpanBadge>TRC-20</SpanBadge></Col>
