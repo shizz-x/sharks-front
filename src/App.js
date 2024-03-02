@@ -16,6 +16,8 @@ import {SiteMessageContext} from "./components/SiteMessage/SiteMessageContext";
 import {Amount} from "./pages/Send/Amount";
 import {Summary} from "./pages/Send/Summary";
 import {Status} from "./pages/Send/Status";
+import {Receive} from "./pages/Receive/Receive";
+import {Share} from "./pages/Receive/Share";
 
 export default class App extends Component {
     render() {
@@ -35,6 +37,8 @@ export default class App extends Component {
                                             <Route path="/send" element={<Send></Send>}></Route>
                                             <Route path="/amount" element={<Amount></Amount>}></Route>
                                             <Route path="/summary" element={<Summary></Summary>}></Route>
+                                            <Route path="/receive" element={<Receive></Receive>}></Route>
+                                            <Route path="/share" element={<Share></Share>}></Route>
                                             <Route path="/status" element={<Status></Status>}></Route>
                                             <Route path="/shuffleWallet" element={<Shuffle></Shuffle>}></Route>
                                             <Route path="/wallet" element={<Wallet></Wallet>}></Route>

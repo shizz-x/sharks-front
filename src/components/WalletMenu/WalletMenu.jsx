@@ -18,7 +18,7 @@ export function WalletMenu(props) {
                 <CashIcon />
             </MenuButton>
 
-            <MenuButton buttonTitle={'Receive'} classItem={styles.item}  classButton={styles.btn}>
+            <MenuButton buttonTitle={'Receive'} link={'/receive'} classItem={styles.item}  classButton={styles.btn}>
                 <RecieveIcon />
             </MenuButton>
 
