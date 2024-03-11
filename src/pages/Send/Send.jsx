@@ -7,7 +7,7 @@ import {ChatIcon} from "../../components/Icon/Chat/ChatIcon";
 import {Container} from "react-bootstrap";
 import React, {useState} from "react";
 import {ArrowIcon} from "../../components/Icon/Arrow/ArrowIcon";
-import {SendMenu} from "../../components/SendMenu/SendMenu";
+import {NextPastMenu} from "../../components/NextPastMenu/NextPastMenu";
 import {TextBanner} from "../../components/TextBanner/TextBanner";
 import {SpanBadge} from "../../components/SpanBadge/SpanBadge";
 import {ContactList} from "../../components/ContactList/ContactList";
@@ -139,7 +139,7 @@ export function Send(props){
             <VideoBanner video={error?errVideo:video} borderRadius={true} sticky={false}>
                 {error?<ErrorBlock />:contactSelect!==null?<SelectBlock />:<NormalBlock />}
                 <Container>
-                    <SendMenu showQRButton={true} nextLink={'/amount'} />
+                    <NextPastMenu showQRButton={true} nextLink={'/amount'} />
                 </Container>
             </VideoBanner>
             <div className={'pt-10'}>

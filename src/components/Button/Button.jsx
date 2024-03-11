@@ -6,12 +6,14 @@ import PropTypes from 'prop-types'
 Button.propTypes = {
     withoutBorder: PropTypes.bool,
     onClick: PropTypes.func,
-    className: PropTypes.string
+    className: PropTypes.string,
+    disabled: PropTypes.bool
+
 }
 
 export function Button(props) {
     return (
-        <Btn className={classNames(styles.button, props.withoutBorder?styles.withoutBorder:null,props.className)} onClick={props.onClick} variant="dark">
+        <Btn className={classNames(styles.button, props.withoutBorder?styles.withoutBorder:null,props.className)} onClick={props.onClick} variant="dark" disabled={props.disabled}>
             {props.children}
         </Btn>
     );

@@ -10,7 +10,7 @@ export function WalletMenu(props) {
 
     return(
         <div className={styles.walletMenu}>
-            <MenuButton buttonTitle={'Card'} classItem={styles.item}  classButton={styles.btn}>
+            <MenuButton buttonTitle={'Card'} link={'/card'} classItem={styles.item}  classButton={styles.btn}>
                 <CardIcon />
             </MenuButton>
 

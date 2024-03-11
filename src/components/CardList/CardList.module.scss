@@ -1,0 +1,60 @@
+@import "../../styles/index";
+
+.cardList{
+
+  &.minVH{
+    min-height: 30vh;
+  }
+
+  .cardItem{
+    display: flex;
+    justify-content: space-between;
+    gap: $content-gap;
+    padding: 8px $content-gap;
+    margin-left: $content-gap;
+    margin-right: $content-gap;
+    border-radius: 15px;
+    margin-bottom: 20px;
+
+    &.select{
+      background-color: rgba(255,255,255,0.08);
+    }
+
+
+
+    .logo{
+      display: flex;
+      width: 67px;
+      height: 43px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9px;
+
+    }
+    .text{
+      display: grid;
+      align-items: center;
+      flex-grow: 1;
+
+      b{
+        display: block;
+        font-size: 16px;
+        font-weight: bold;
+      }
+      span{
+        font-size: 12px;
+        color: #C7C7C7;
+      }
+    }
+    .currency{
+      display: flex;
+      align-items: center;
+    }
+    .selectIcon{
+      position: relative;
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+}

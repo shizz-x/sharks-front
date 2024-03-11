@@ -1,0 +1,82 @@
+@import "../../../styles/index";
+
+.input{
+  position: relative;
+
+
+  &.text{
+
+    input {
+      border: none;
+      outline: none;
+      background: none;
+      box-shadow: none;
+      font-size: 21px;
+      color: white;
+      padding: 19px 100px 19px 0;
+      border-bottom: 1px solid white;
+      border-radius: 0;
+
+      &:active, &:hover, &:focus {
+        outline: 0;
+        outline-offset: 0;
+        background: none;
+        border: none;
+        outline: none;
+        box-shadow: none;
+        color: white;
+        border-bottom: 1px solid white;
+        border-radius: 0;
+      }
+    }
+    .error{
+      color: #CB5E8E;
+    }
+
+    .spanError{
+      position: absolute;
+      right: 0;
+      top: 85px
+    }
+  }
+  label{
+    margin-top: 45px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+  .colors{
+    padding: 19px 0;
+    display: flex;
+    justify-content: space-between;
+
+    .radio{
+
+      input[type="radio"] {
+        background: rgba(0,0,0,0);
+        border-width: 3px;
+        border-style: solid;
+        border-color: inherit;
+        width: 21px;
+        height: 21px;
+        margin-left: 4px;
+        margin-top: 4px;
+        cursor: pointer;
+
+        &:checked{
+          display: none;
+        }
+
+      }
+    }
+
+    .myRadio{
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+  }
+
+
+}

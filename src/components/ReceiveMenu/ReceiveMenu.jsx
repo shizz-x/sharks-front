@@ -1,6 +1,6 @@
 import {MenuButton} from "../Button/MenuButton";
 import classNames from "classnames";
-import styles from "../SendMenu/SendMenu.module.scss";
+import styles from "../NextPastMenu/NextPastMenu.module.scss";
 import {ShareIcon} from "../Icon/Share/ShareIcon";
 import {CopyIcon} from "../Icon/Copy/CopyIcon";
 import PropTypes from "prop-types";

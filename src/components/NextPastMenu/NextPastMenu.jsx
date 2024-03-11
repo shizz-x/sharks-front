@@ -1,4 +1,4 @@
-import styles from "./SendMenu.module.scss"
+import styles from "./NextPastMenu.module.scss"
 import {MenuButton} from "../Button/MenuButton";
 import {QRIcon} from "../Icon/QR/QRIcon";
 import classNames from "classnames";
@@ -7,7 +7,7 @@ import {ArrowIcon} from "../Icon/Arrow/ArrowIcon";
 import PropTypes from "prop-types";
 import {ShowDependencies} from "../ShowDependencies/ShowDependencies";
 
-SendMenu.propTypes={
+NextPastMenu.propTypes={
     qrHandler:PropTypes.func,
     qrLink:PropTypes.string,
     pasteHandler:PropTypes.func,
@@ -17,7 +17,7 @@ SendMenu.propTypes={
     showQRButton:PropTypes.bool
 }
 
-export function SendMenu({showQRButton=false,...props}) {
+export function NextPastMenu({showQRButton=false,...props}) {
 
     return(
         <div className={styles.sendMenu}>

@@ -18,6 +18,9 @@ import {Summary} from "./pages/Send/Summary";
 import {Status} from "./pages/Send/Status";
 import {Receive} from "./pages/Receive/Receive";
 import {Share} from "./pages/Receive/Share";
+import {Card} from "./pages/Card/Card";
+import {NewCard} from "./pages/Card/NewCard";
+import {CardListPage} from "./pages/Card/CardListPage";
 
 export default class App extends Component {
     render() {
@@ -42,6 +45,9 @@ export default class App extends Component {
                                             <Route path="/status" element={<Status></Status>}></Route>
                                             <Route path="/shuffleWallet" element={<Shuffle></Shuffle>}></Route>
                                             <Route path="/wallet" element={<Wallet></Wallet>}></Route>
+                                            <Route path="/card" element={<Card></Card>}></Route>
+                                            <Route path="/newCard" element={<NewCard></NewCard>}></Route>
+                                            <Route path="/cardList" element={<CardListPage></CardListPage>}></Route>
                                             <Route path="/login2" element={<Login></Login>}></Route>
                                             <Route path="/register" element={<Register></Register>}></Route>
                                         </Routes>

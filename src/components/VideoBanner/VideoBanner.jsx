@@ -13,6 +13,7 @@ VideoBanner.propTypes = {
 
 export function VideoBanner(props) {
     const Component = props.MainBlockComponent?props.MainBlockComponent:()=><></>;
+    const showComponent = !!props.MainBlockComponent;
     return (
         <div
             className={classNames(
@@ -28,7 +29,11 @@ export function VideoBanner(props) {
             <div className={styles.containerVideo}>
                 {props.children}
             </div>
-            <Component />
+            <ShowDependencies dependencies={showComponent}>
+                <div className={styles.componentAdd}>
+                    <Component />
+                </div>
+            </ShowDependencies>
         </div>
     );
 }

@@ -7,12 +7,7 @@ import {ArrowIcon} from "../../components/Icon/Arrow/ArrowIcon";
 import {ChatIcon} from "../../components/Icon/Chat/ChatIcon";
 import {QrShow} from "../../components/QrShow/QrShow";
 import QrImg from "../../tmp/qr.png";
-import {Container} from "react-bootstrap";
-import {ReceiveMenu} from "../../components/ReceiveMenu/ReceiveMenu";
-import {TitleWithRightBlock} from "../../components/TitleWithRightBlock/TitleWithRightBlock";
-import {NumList} from "../../components/NumList/NumList";
 import React from "react";
-import {ConfirmMenu} from "../../components/ConfirmMenu/ConfirmMenu";
 import {ReceiveMenuBlack} from "../../components/ReceiveMenu/ReceiveMenuBlack";
 
 export function Share(props) {

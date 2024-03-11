@@ -2,7 +2,7 @@ import {VideoBanner} from "../../components/VideoBanner/VideoBanner";
 import video from "../../media/wiolet_background.mp4";
 import errVideo from "../../media/red_background.mp4";
 import {Container} from "react-bootstrap";
-import {SendMenu} from "../../components/SendMenu/SendMenu";
+import {NextPastMenu} from "../../components/NextPastMenu/NextPastMenu";
 import React, {useEffect, useState} from "react";
 import {Menu} from "../../components/Menu/Menu";
 import {Link} from "react-router-dom";
@@ -51,7 +51,7 @@ export function Amount(props) {
                     {err?<SpanBadge>Insufficient balance</SpanBadge>:<SpanBadge>Send all</SpanBadge>}
                 </TextBanner>
                 <Container>
-                    <SendMenu nextLink={'/summary'}  />
+                    <NextPastMenu nextLink={'/summary'}  />
                 </Container>
             </VideoBanner>
             <Container className={'pt-10'}>

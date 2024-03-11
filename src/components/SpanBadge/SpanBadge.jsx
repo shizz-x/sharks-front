@@ -9,7 +9,7 @@ SpanBadge.propTypes={
 
 export function SpanBadge(props) {
     return(
-        <span className={classNames(styles.spanBadge)} onClick={props.onClick}>
+        <span className={classNames(styles.spanBadge,props.classNames)} onClick={props.onClick}>
             {props.children}
         </span>
     );
