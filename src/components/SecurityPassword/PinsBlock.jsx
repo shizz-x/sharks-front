@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import style from "./SecurityPassword.module.scss";
 import {useEffect, useState} from "react";
-import {PIN_SIZE} from "./SecurityPassword";
+
 
 PinsBlock.propTypes = {
     pins: PropTypes.array.isRequired

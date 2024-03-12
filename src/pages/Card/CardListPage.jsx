@@ -16,6 +16,7 @@ import {PlusIcon} from "../../components/Icon/Plus/PlusIcon";
 import sberImg from "../../tmp/sber.png"
 import mcImg from "../../tmp/mc.png"
 import {CardList} from "../../components/CardList/CardList";
+import {SpanBadge} from "../../components/SpanBadge/SpanBadge";
 
 
 const cards = [
@@ -36,7 +37,9 @@ const cards = [
 ];
 
 export function CardListPage(props) {
-    const [bg,setBg] =useState(green);
+    const [bg,setBg] = useState(green);
+    const [select,setSelect] = useState(false);
+    const [card,setCard] = useState(cards[0]);
 
 
     return(
@@ -51,7 +54,9 @@ export function CardListPage(props) {
                 </Menu>
                 <FlexColumnLayout minVH={false}>
                     <Container className={'d-flex align-items-center flex-grow-1'}>
-                        <CardNumber number={'5105105105105100'} editable={true} />
+                        <CardNumber number={card.number} editable={!select}>
+                            <img src={card.cardLogo} alt={card.cardName} /> <SpanBadge>{card.currency}</SpanBadge>
+                        </CardNumber>
                     </Container>
                 </FlexColumnLayout>
             </VideoBanner>
@@ -61,6 +66,8 @@ export function CardListPage(props) {
                 </TitleWithRightBlock>
             </Container>
             <CardList cards={cards} minVH={true} selectable={true} onClick={(obj)=>{
+                setSelect(true);
+                setCard(obj);
                 if(obj.cardName === 'City') {
                     setBg(blue);
                 } else {

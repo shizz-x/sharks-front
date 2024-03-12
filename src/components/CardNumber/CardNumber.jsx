@@ -1,8 +1,10 @@
 import PropTypes from "prop-types";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Container} from "react-bootstrap";
 import style from "./CardNumber.module.scss"
 import classNames from "classnames";
+import {SpanBadge} from "../SpanBadge/SpanBadge";
+import {ShowDependencies} from "../ShowDependencies/ShowDependencies";
 
 
 CardNumber.propTypes = {
@@ -23,23 +25,28 @@ export function CardNumber(props) {
     },[props.number])
 
     return(
-        <div className={classNames(style.cardNumber,props.editable?style.editable:null)}>
-            {numList.map((val,key)=>(
-                <div key={key}>
-                    {Array.from(val).map((n,k)=>(
-                        <span
-                            className={classNames(
-                                (key*4+k)===props.currentSelect?style.current:null,
-                                (key*4+k)<props.currentSelect?style.add:null,
-                                (key*4+k)===(props.currentSelect-1)?style.last:null
-                            )}
-                            key={'num_'+key+'_'+k}
-                        >
-                            {n}
-                        </span>
-                    ))}
-                </div>
-            ))}
+        <div className={style.cardBlock}>
+            <div className={classNames(style.cardNumber,props.editable?style.editable:null)}>
+                {numList.map((val,key)=>(
+                    <div key={key}>
+                        {Array.from(val).map((n,k)=>(
+                            <span
+                                className={classNames(
+                                    (key*4+k)===props.currentSelect?style.current:null,
+                                    (key*4+k)<props.currentSelect?style.add:null,
+                                    (key*4+k)===(props.currentSelect-1)?style.last:null
+                                )}
+                                key={'num_'+key+'_'+k}
+                            >
+                                {n}
+                            </span>
+                        ))}
+                    </div>
+                ))}
+            </div>
+            <div className={style.cardContent}>
+                {props.children}
+            </div>
         </div>
     );
 }

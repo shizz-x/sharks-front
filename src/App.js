@@ -21,6 +21,8 @@ import {Share} from "./pages/Receive/Share";
 import {Card} from "./pages/Card/Card";
 import {NewCard} from "./pages/Card/NewCard";
 import {CardListPage} from "./pages/Card/CardListPage";
+import {BlurContext} from "./components/Layouts/BlurContext";
+import {BlurLayout} from "./components/Layouts/BlurLayout";
 
 export default class App extends Component {
     render() {
@@ -31,9 +33,10 @@ export default class App extends Component {
                     <TronContextProvider>
                         <ThemeContext theme={ThemeValue.dark}>
                             <MainLayout>
+                                <BlurContext>
                                 <SiteMessageContext>
                                     <SecurityPasswordContext>
-
+                                        <BlurLayout>
                                         <Routes>
                                             <Route index path="/login" element={<Index></Index>}></Route>
                                             <Route path="/createWallet" element={<Create></Create>}></Route>
@@ -51,9 +54,10 @@ export default class App extends Component {
                                             <Route path="/login2" element={<Login></Login>}></Route>
                                             <Route path="/register" element={<Register></Register>}></Route>
                                         </Routes>
-
+                                        </BlurLayout>
                                     </SecurityPasswordContext>
                                 </SiteMessageContext>
+                                </BlurContext>
                             </MainLayout>
                         </ThemeContext>
                     </TronContextProvider>

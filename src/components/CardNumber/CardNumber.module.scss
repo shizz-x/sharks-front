@@ -1,31 +1,50 @@
 @import "../../styles/index";
 
-.cardNumber{
-  display: flex;
-  justify-content: space-between;
+
+.cardBlock {
+  display: grid;
   flex-grow: 1;
   align-items: center;
-  font-size: 28px;
-  color: white;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-  font-weight: bold;
-  letter-spacing: 1.5px;
 
-  &.editable{
-    font-weight: normal;
-    color: rgba(255,255,255,0.5);
-    text-shadow: none;
-    .current{
-      border-left: 2px solid white;
-      padding-left:4px;
-    }
-    .add{
-      color: white;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-      font-weight: bold;
-      &.last{
-        margin-right: 4px;
+  .cardNumber {
+    display: flex;
+    justify-content: space-between;
+    font-size: 28px;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    flex-grow: 1;
+
+    &.editable {
+      font-weight: normal;
+      color: rgba(255, 255, 255, 0.5);
+      text-shadow: none;
+
+      .current {
+        border-left: 2px solid white;
+        padding-left: 4px;
+      }
+
+      .add {
+        color: white;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        font-weight: bold;
+
+        &.last {
+          margin-right: 4px;
+        }
       }
     }
+  }
+  .cardContent{
+    position: relative;
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: $content-gap*2;
+    min-height: 30px;
   }
 }

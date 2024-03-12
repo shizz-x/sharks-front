@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
-import react, {useContext, useState} from "react";
+import react, {useContext, useEffect, useState} from "react";
 import {SecurityPassword} from "./SecurityPassword";
 import style from "./SecurityPassword.module.scss"
+import {useBlur} from "../Layouts/BlurContext";
 
 
 SecurityPasswordContext.propTypes = {
@@ -32,12 +33,16 @@ export function SecurityPasswordContext(props) {
     const [canClose,setCanClose] = useState(false);
     const [errorTitle,setErrorTitle] = useState('');
     const [baseTitle,setBaseTitle] = useState('');
+    const {setComponents,blurWindow} = useBlur();
 
 
+    useEffect(()=>{
+        blurWindow(show,<SecurityPassword show={show} canClose={canClose}/>);
+    },[show,canClose]);
 
 
     const setPinCodeHandler = (f) =>{
-        if (typeof f === 'function') {
+        if (f instanceof Function) {
             checkHandler = f;
         }
     }
@@ -52,6 +57,7 @@ export function SecurityPasswordContext(props) {
         setShow(false);
     }
 
+
     return (
         <SecPasswordContext.Provider value={{
             show: show,
@@ -62,12 +68,7 @@ export function SecurityPasswordContext(props) {
             hidePasswordWindow: hidePasswordWindow,
             setCheckHandler:setPinCodeHandler
         }}>
-            <div className={show?style.overFlow:null}>
-                <div className={show?style.blur:null}>
-                    {props.children}
-                </div>
-            </div>
-            <SecurityPassword show={show} canClose={canClose} />
+                {props.children}
         </SecPasswordContext.Provider>
     );
 }

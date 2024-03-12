@@ -1,0 +1,92 @@
+@import "../../styles/index";
+
+.selectBox {
+  .arrow{
+    margin-left: 10px;
+  }
+}
+
+.selectList{
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: 99;
+  background-color: rgba(0,0,0,0.2);
+
+  .container {
+    max-width: $max-width-window;
+    width: 100%;
+    position: relative;
+    height: 100vh;
+    .listBlock {
+      width: 100%;
+      min-height: 315px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(18, 18, 18, 0.76);
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+      padding-top: 25px;
+      overflow: hidden;
+    }
+  }
+
+  .closeWindow{
+    vertical-align: -5px;
+    cursor: pointer;
+  }
+
+}
+
+.selectCountry{
+  display: flex;
+  justify-content: space-between;
+  gap: $content-gap;
+  padding: 8px $content-gap;
+  margin-left: $content-gap;
+  margin-right: $content-gap;
+  border-radius: 15px;
+  margin-bottom: 10px;
+
+  &.select{
+    background-color: rgba(255,255,255,0.08);
+  }
+
+  .code{
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    font-weight: bold;
+    color: white;
+  }
+  .text{
+    display: grid;
+    flex-grow: 1;
+    padding: 3px;
+    b{
+      display: block;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    span{
+      font-size: 12px;
+    }
+  }
+  .selection{
+    display: flex;
+    align-items: center;
+    .selectIcon{
+      position: relative;
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+}
