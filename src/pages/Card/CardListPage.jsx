@@ -17,6 +17,7 @@ import sberImg from "../../tmp/sber.png"
 import mcImg from "../../tmp/mc.png"
 import {CardList} from "../../components/CardList/CardList";
 import {SpanBadge} from "../../components/SpanBadge/SpanBadge";
+import {NextBackMenu} from "../../components/NextPastMenu/NextBackMenu";
 
 
 const cards = [
@@ -39,13 +40,13 @@ const cards = [
 export function CardListPage(props) {
     const [bg,setBg] = useState(green);
     const [select,setSelect] = useState(false);
-    const [card,setCard] = useState(cards[0]);
+    const [card,setCard] = useState(cards[0].number);
 
 
     return(
         <FlexColumnLayout minVH={true}>
-            <VideoBanner video={bg} borderRadius={true} fullScreen={false} sticky={false} MainBlockComponent={()=><Container><NextPastMenu
-                showQRButton={false} nextLink={'/newCard'}
+            <VideoBanner video={bg} borderRadius={true} fullScreen={false} sticky={false} MainBlockComponent={()=><Container><NextBackMenu
+                nextLink={'/newOrder'} backLink={-1}
             /></Container>}>
                 <Menu>
                     <Menu.Left><Link to={-1}><SettingIcon /></Link></Menu.Left>

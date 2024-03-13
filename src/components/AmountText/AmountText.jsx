@@ -2,9 +2,10 @@ import PropTypes from "prop-types";
 import {Container} from "react-bootstrap";
 import classNames from "classnames";
 import style from "./AmountText.module.scss"
+import {ShowDependencies} from "../ShowDependencies/ShowDependencies";
 
 AmountText.propTypes = {
-    currency: PropTypes.string.isRequired,
+    currency: PropTypes.string,
     amount: PropTypes.number.isRequired,
     simpleClass:PropTypes.bool
 }
@@ -43,7 +44,9 @@ export function AmountText(props) {
     return(
         <Cont>
             <div className={props.simpleClass?style.simpleAmount:style.amount}>
-                <span className={style.currency}>{props.currency}</span>
+                <ShowDependencies dependencies={props.currency}>
+                    <span className={style.currency}>{props.currency}</span>
+                </ShowDependencies>
                 <span className={style.int}>{amount.int}</span>
                 <span className={style.part}>{amount.part}</span>
             </div>

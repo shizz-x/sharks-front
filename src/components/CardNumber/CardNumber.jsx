@@ -10,7 +10,8 @@ import {ShowDependencies} from "../ShowDependencies/ShowDependencies";
 CardNumber.propTypes = {
     number: PropTypes.string.isRequired,
     editable: PropTypes.bool,
-    currentSelect: PropTypes.number
+    currentSelect: PropTypes.number,
+    className: PropTypes.string
 }
 
 function separateCardNumber(cardNumber){
@@ -25,7 +26,7 @@ export function CardNumber(props) {
     },[props.number])
 
     return(
-        <div className={style.cardBlock}>
+        <div className={classNames(style.cardBlock,props.className)}>
             <div className={classNames(style.cardNumber,props.editable?style.editable:null)}>
                 {numList.map((val,key)=>(
                     <div key={key}>
@@ -44,9 +45,11 @@ export function CardNumber(props) {
                     </div>
                 ))}
             </div>
-            <div className={style.cardContent}>
-                {props.children}
-            </div>
+            <ShowDependencies dependencies={props.children}>
+                <div className={style.cardContent}>
+                    {props.children}
+                </div>
+            </ShowDependencies>
         </div>
     );
 }

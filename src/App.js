@@ -23,6 +23,9 @@ import {NewCard} from "./pages/Card/NewCard";
 import {CardListPage} from "./pages/Card/CardListPage";
 import {BlurContext} from "./components/Layouts/BlurContext";
 import {BlurLayout} from "./components/Layouts/BlurLayout";
+import {Order} from "./pages/Card/Order";
+import {OrderConfirm} from "./pages/Card/OrderConfirm";
+import {OrderStatus} from "./pages/Card/OrderStatus";
 
 export default class App extends Component {
     render() {
@@ -51,6 +54,9 @@ export default class App extends Component {
                                             <Route path="/card" element={<Card></Card>}></Route>
                                             <Route path="/newCard" element={<NewCard></NewCard>}></Route>
                                             <Route path="/cardList" element={<CardListPage></CardListPage>}></Route>
+                                            <Route path="/orderConfirm" element={<OrderConfirm></OrderConfirm>}></Route>
+                                            <Route path="/orderStatus" element={<OrderStatus></OrderStatus>}></Route>
+                                            <Route path="/newOrder" element={<Order></Order>}></Route>
                                             <Route path="/login2" element={<Login></Login>}></Route>
                                             <Route path="/register" element={<Register></Register>}></Route>
                                         </Routes>
