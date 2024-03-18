@@ -46,7 +46,7 @@ export function Order(props) {
     const ErrorMenu = ()=>{
         return(
             <Container className={'mt-3'}>
-                <DropDownMenu dropTitle={'1 USDT = 0.33 TRY'} />
+                <DropDownMenu dropTitle={'1 USDT = 0.33 TRY'} nextLinkDisabled={true} />
             </Container>
         );
     }

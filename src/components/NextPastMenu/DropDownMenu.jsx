@@ -11,6 +11,7 @@ DropDownMenu.propTypes={
     dropTitle:PropTypes.string.isRequired,
     nextHandler:PropTypes.func,
     nextLink:PropTypes.string,
+    nextLinkDisabled: PropTypes.bool,
 }
 
 export function DropDownMenu(props)  {
@@ -20,8 +21,8 @@ export function DropDownMenu(props)  {
                 classItem={classNames(styles.item,styles.other)}
                 classBlock={styles.block}
                 classButton={classNames(styles.btn,styles.btnWithText)}
-                link={props.backLink}
-                onClick={props.backHandler}
+                link={props.dropLink}
+                onClick={props.dropHandler}
             >
                 {props.dropTitle}<ArrowDownIcon spanClass={styles.arrowDown} />
 
@@ -32,7 +33,7 @@ export function DropDownMenu(props)  {
                 classButton={classNames(styles.btn,styles.btnWithText)}
                 link={props.nextLink}
                 onClick={props.nextHandler}
-                disabled={true}
+                disabled={props.nextLinkDisabled}
             >
                 <ArrowIcon spanClass={styles.icon}  leftToRight={true} /> Next
             </MenuButton>

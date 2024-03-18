@@ -26,6 +26,8 @@ import {BlurLayout} from "./components/Layouts/BlurLayout";
 import {Order} from "./pages/Card/Order";
 import {OrderConfirm} from "./pages/Card/OrderConfirm";
 import {OrderStatus} from "./pages/Card/OrderStatus";
+import {Cash} from "./pages/Cash/Cash";
+
 
 export default class App extends Component {
     render() {
@@ -56,6 +58,7 @@ export default class App extends Component {
                                             <Route path="/cardList" element={<CardListPage></CardListPage>}></Route>
                                             <Route path="/orderConfirm" element={<OrderConfirm></OrderConfirm>}></Route>
                                             <Route path="/orderStatus" element={<OrderStatus></OrderStatus>}></Route>
+                                            <Route path="/cash" element={<Cash></Cash>}></Route>
                                             <Route path="/newOrder" element={<Order></Order>}></Route>
                                             <Route path="/login2" element={<Login></Login>}></Route>
                                             <Route path="/register" element={<Register></Register>}></Route>

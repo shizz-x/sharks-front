@@ -14,7 +14,7 @@ export function WalletMenu(props) {
                 <CardIcon />
             </MenuButton>
 
-            <MenuButton buttonTitle={'Cash'} classItem={styles.item}  classButton={styles.btn}>
+            <MenuButton buttonTitle={'Cash'} link={'/cash'} classItem={styles.item}  classButton={styles.btn}>
                 <CashIcon />
             </MenuButton>
 
