@@ -10,8 +10,9 @@ OrderItem.propTypes={
     titleRightComponent: PropTypes.element,
     cardImage: PropTypes.string,
     amount: PropTypes.number,
+    currency:PropTypes.string,
     tags: PropTypes.array,
-    cardNumber: PropTypes.string,
+    cardNumber: PropTypes.string
 }
 
 export function OrderItem(props) {
@@ -33,7 +34,7 @@ export function OrderItem(props) {
             <div className={style.line}>
                 <ShowDependencies dependencies={props.amount!==undefined}>
                     <div className={style.amount}>
-                        <AmountText currency={''} amount={props.amount} simpleClass={true} />
+                        <AmountText currency={props.currency?props.currency:''} amount={props.amount} simpleClass={true} />
                     </div>
                 </ShowDependencies>
                 <ShowDependencies dependencies={props.cardImage!==undefined}>

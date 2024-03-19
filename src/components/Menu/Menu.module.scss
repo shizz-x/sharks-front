@@ -7,5 +7,15 @@
   .title{
     font-size: 16px;
   }
+  .newMessage{
+    position: absolute;
+    display: block;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    top: 13px;
+    right: 8px;
+    background-color: #29E13B;
+  }
 
 }

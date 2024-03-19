@@ -31,8 +31,8 @@ export function DropDownMenu(props)  {
                 classItem={classNames(styles.item,styles.other)}
                 classBlock={styles.block}
                 classButton={classNames(styles.btn,styles.btnWithText)}
-                link={props.nextLink}
-                onClick={props.nextHandler}
+                link={props.nextLinkDisabled?null:props.nextLink}
+                onClick={props.nextLinkDisabled?()=>{}:props.nextHandler}
                 disabled={props.nextLinkDisabled}
             >
                 <ArrowIcon spanClass={styles.icon}  leftToRight={true} /> Next

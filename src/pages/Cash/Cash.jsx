@@ -84,6 +84,7 @@ export function Cash(props) {
     return( <FlexColumnLayout minVH={true}>
         <VideoBanner video={video} borderRadius={true} fullScreen={false} sticky={false} MainBlockComponent={()=><Container>
             <DropDownMenu
+                nextLink={'/cashAmount'}
                 dropTitle={'1 USDT = 0.33 TRY'}
                 dropHandler={()=>blurWindow(true,<CurrencyList />)}
             />

@@ -1,0 +1,42 @@
+@import "../../styles/index";
+
+.delyveryInfo{
+  display: grid;
+  grid-auto-rows: auto;
+  width: 100%;
+  margin-bottom: $content-gap*2;
+  .cityInfo{
+    margin-bottom: $content-gap*2;
+    img{
+      width: 37px;
+      height: 37px;
+      border-radius: 50%;
+      margin-right: $content-gap;
+    }
+    .city{
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      margin-right: 5px;
+    }
+    .workTime{
+      font-size: 12px;
+    }
+  }
+  .info{
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    gap: $content-gap;
+
+    .content{
+      display: flex;
+      flex-grow: 1;
+    }
+    .icon{
+      display: flex;
+      align-items: center;
+    }
+
+  }
+}

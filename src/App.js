@@ -27,6 +27,9 @@ import {Order} from "./pages/Card/Order";
 import {OrderConfirm} from "./pages/Card/OrderConfirm";
 import {OrderStatus} from "./pages/Card/OrderStatus";
 import {Cash} from "./pages/Cash/Cash";
+import {CashAmount} from "./pages/Cash/CashAmount";
+import {CashConfirm} from "./pages/Cash/CashConfirm";
+import {CashStatus} from "./pages/Cash/CashStatus";
 
 
 export default class App extends Component {
@@ -59,6 +62,9 @@ export default class App extends Component {
                                             <Route path="/orderConfirm" element={<OrderConfirm></OrderConfirm>}></Route>
                                             <Route path="/orderStatus" element={<OrderStatus></OrderStatus>}></Route>
                                             <Route path="/cash" element={<Cash></Cash>}></Route>
+                                            <Route path="/cashAmount" element={<CashAmount></CashAmount>}></Route>
+                                            <Route path="/cashConfirm" element={<CashConfirm></CashConfirm>}></Route>
+                                            <Route path="/cashStatus" element={<CashStatus></CashStatus>}></Route>
                                             <Route path="/newOrder" element={<Order></Order>}></Route>
                                             <Route path="/login2" element={<Login></Login>}></Route>
                                             <Route path="/register" element={<Register></Register>}></Route>
