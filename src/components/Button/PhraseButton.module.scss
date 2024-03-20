@@ -1,11 +1,13 @@
 @import "../../styles/index";
 
 .button{
-  background: rgba(164,255,164,0.14);
+  background: rgba(255,255,255,0.14);
   width: 100%;
   border-radius: 15px;
-  border:1px solid rgba(255,255,255,0.14);
+  border:1px solid rgba(255,255,255,0.05);
   font-size: 16px;
   color: white;
   padding: 12px 10px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 15px;
+  backdrop-filter: blur(400px);
 }

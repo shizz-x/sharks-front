@@ -1,0 +1,11 @@
+@import "../../styles/index";
+
+.topPhoneLayout{
+  padding-top: $top-phone-padding;
+  &.background{
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+    padding-bottom: $content-gap*2;
+    background-color: #191919;
+  }
+}

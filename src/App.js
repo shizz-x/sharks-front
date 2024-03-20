@@ -30,6 +30,10 @@ import {Cash} from "./pages/Cash/Cash";
 import {CashAmount} from "./pages/Cash/CashAmount";
 import {CashConfirm} from "./pages/Cash/CashConfirm";
 import {CashStatus} from "./pages/Cash/CashStatus";
+import {Setting} from "./pages/Setting/Setting";
+import {SettingPhrase} from "./pages/Setting/SettingPhrase";
+import SettingCode from "./pages/Setting/SettingCode";
+
 
 
 export default class App extends Component {
@@ -66,6 +70,9 @@ export default class App extends Component {
                                             <Route path="/cashConfirm" element={<CashConfirm></CashConfirm>}></Route>
                                             <Route path="/cashStatus" element={<CashStatus></CashStatus>}></Route>
                                             <Route path="/newOrder" element={<Order></Order>}></Route>
+                                            <Route path="/setting" element={<Setting></Setting>}></Route>
+                                            <Route path="/settingPhrase" element={<SettingPhrase></SettingPhrase>}></Route>
+                                            <Route path="/settingCode" element={<SettingCode></SettingCode>}></Route>
                                             <Route path="/login2" element={<Login></Login>}></Route>
                                             <Route path="/register" element={<Register></Register>}></Route>
                                         </Routes>

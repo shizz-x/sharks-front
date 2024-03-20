@@ -233,7 +233,7 @@ export default function Wallet(props) {
         <>
             <VideoBanner video={video} borderRadius={true} sticky={true}>
                 <Menu>
-                    <Menu.Left><Link to={-1}><SettingIcon /></Link></Menu.Left>
+                    <Menu.Left><Link to={'/setting'}><SettingIcon /></Link></Menu.Left>
                     <Menu.Title>Hello, Leo</Menu.Title>
                     <Menu.Right><Link to={"#"}><ChatIcon/></Link></Menu.Right>
                 </Menu>

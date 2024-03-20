@@ -1,0 +1,11 @@
+@import "../../styles/index";
+
+.centerText{
+  padding-top: $content-gap*2;
+  padding-bottom: $content-gap*2;
+  text-align: center;
+  h3{
+    font-size: 22px;
+    font-weight: bold;
+  }
+}
