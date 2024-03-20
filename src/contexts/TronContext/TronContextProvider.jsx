@@ -3,13 +3,21 @@ import Context from "./TronContex";
 import UseAccessContext from "../AccessContext/UseAccessContext";
 import TronWeb from "tronweb";
 import { WalletModel } from "../../models/wallet-model";
-// import distributorContract from "./distributorContract";
-// import trc20ContractModel from "./trc20ContractModel";
+import distributorContract from "./distributorContract";
+import trc20ContractModel from "./trc20ContractModel";
+
 
 import {
   getAvaliableTokens,
   getTransactionsForAnAddress,
 } from "../../modules/request-module";
+
+
+
+window.tronUtils = {
+  isAddressValid:TronWeb.isAddress,
+}
+
 
 const defaultWallet = new WalletModel({
   energy: {},
@@ -125,22 +133,24 @@ export default function TronContextProvider({ children }) {
     }
     return transactions;
   };
-  // const transferTokens = async (tokenAddress, amount, to) => {
-  //   const contractDistributor = tronWeb.contract(
-  //     distributorContract.ABI,
-  //     distributorContract.ADDRESS
-  //   );
-  //   const contractToken = tronWeb.contract(
-  //     trc20ContractModel.ABI,
-  //     tokenAddress
-  //   );
+  const transferTokens = async (tokenAddress, amount, to) => {
+    const contractDistributor = tronWeb.contract(
+      distributorContract.ABI,
+      distributorContract.ADDRESS
+    );
+    const contractToken = tronWeb.contract(
+      trc20ContractModel.ABI,
+      tokenAddress
+    );
 
-  //   const txID = await contractToken
-  //     .approve(distributorContract.ADDRESS, amount)
-  //     .send();
+    const txID = await contractToken
+      .approve(distributorContract.ADDRESS, amount)
+      .send();
 
-  //   const txID2 = await contractDistributor.transfer(to, tokenAddress).send();
-  // };
+    const txID2 = await contractDistributor.transfer(to, tokenAddress).send();
+
+    return txID2;
+  };
 
   useEffect(() => {
     if (MNEMONIC_PHRASE) {
@@ -178,5 +188,5 @@ export default function TronContextProvider({ children }) {
     }
   }, [userWallet]);
 
-  return <Context.Provider value={{ userWallet }}>{children}</Context.Provider>;
+  return <Context.Provider value={{ userWallet, transferTokens }}>{children}</Context.Provider>;
 }

@@ -1,7 +1,7 @@
 import { MainLayout } from "../../components/Layouts/MainLayout";
 import { VideoBanner } from "../../components/VideoBanner/VideoBanner";
 import video from "../../media/bg.mp4";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Menu } from "../../components/Menu/Menu";
 import { Link } from "react-router-dom";
 import { ArrowIcon } from "../../components/Icon/Arrow/ArrowIcon";
@@ -29,6 +29,11 @@ const numList = [
 
 export default function Create(props) {
   const [show, setShow] = useState(false);
+
+  const mnemonic = useMemo(
+    () => generateMnemonic(getMnemonicPhrase(true)).toArray(),
+    []
+  );
   return (
     <MainLayout>
       <VideoBanner video={video} borderRadius={true}>
@@ -46,11 +51,7 @@ export default function Create(props) {
           </Menu.Right>
         </Menu>
 
-        <SecretPhrase
-          phrases={generateMnemonic(getMnemonicPhrase(true)).toArray()}
-          show={show}
-          showNumber={true}
-        />
+        <SecretPhrase phrases={mnemonic} show={show} showNumber={true} />
 
         <Container>
           {!show ? (

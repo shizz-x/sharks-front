@@ -1,0 +1,16 @@
+.textBanner{
+  display: flex;
+  min-height: 30vh;
+  padding: 10px;
+
+  .container{
+    align-self: center;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    gap: 22px;
+    p{
+      margin-bottom: 20px;
+    }
+  }
+}

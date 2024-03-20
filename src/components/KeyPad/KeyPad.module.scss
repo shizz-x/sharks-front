@@ -1,0 +1,46 @@
+@import "../../styles/index";
+
+.numbersBlock{
+  padding-left: $padding-left-right;
+  padding-right: $padding-left-right;
+  height: 361px;
+  width: 100%;
+  background-color: $black-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &.bottomPosition{
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  h3{
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .rowNum {
+    display: flex;
+    justify-content: space-between;
+
+    .item {
+      width: 100px;
+      border: 1px solid $black-color;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      cursor: pointer;
+      font-size: 40px;
+    }
+  }
+
+
+}

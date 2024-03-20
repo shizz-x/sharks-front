@@ -1,0 +1,33 @@
+@import "../../styles/index";
+
+.orderItem {
+  display: grid;
+  grid-auto-rows: auto;
+  width: 100%;
+  margin-bottom: $content-gap*2;
+
+  .line {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-grow: 1;
+    gap: $content-gap;
+    font-weight: lighter;
+
+    .cardNum{
+      margin-bottom: $content-gap*2;
+      margin-top:$content-gap*2;
+    }
+
+    .amount{
+      flex-grow: 1;
+    }
+    .tags{
+      display: flex;
+      align-items: flex-end;
+      gap: 7px;
+      padding-bottom: 19px;
+      flex-wrap: wrap;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+@import "../../styles/index";
+
+.sendMenu{
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+
+  .first{
+    width: 55px;
+  }
+  .other{
+    flex-grow: 1;
+  }
+
+  .item{
+
+    .block{
+      width: 100%;
+    }
+
+    .btn{
+      border-radius: 15px;
+      height: 55px;
+      padding: 13px 0;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .icon{
+      margin-right: 10px;
+      vertical-align: 2px;
+    }
+    .arrowDown{
+      margin-left: 10px;
+      vertical-align: 2px;
+    }
+
+    .btnWithText{
+      display: block;
+    }
+
+    .btnQR{
+      width: 55px;
+    }
+
+  }
+}

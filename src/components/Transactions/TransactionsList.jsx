@@ -2,6 +2,7 @@ import {FilterIcon} from "../Icon/Filter/FilterIcon";
 import style from "./TransactionList.module.scss"
 import PropTypes from "prop-types";
 import {TransactionItem} from "./TransactionItem";
+import {FilterForList} from "../FilterForList/FilterForList";
 
 TransactionsList.propTypes ={
     transactions: PropTypes.array.isRequired
@@ -10,10 +11,7 @@ TransactionsList.propTypes ={
 export function TransactionsList(props) {
     return (
         <div className={style.transactionList}>
-            <div className={style.header}>
-                Transactions
-                <FilterIcon spanClass={style.filter} />
-            </div>
+            <FilterForList title={'Transactions'} />
             <div className={style.list}>
                 {props.transactions.map((value, index)=>(
                     <TransactionItem

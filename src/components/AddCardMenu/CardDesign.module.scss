@@ -1,0 +1,14 @@
+@import "../../styles/index";
+
+.cardDesign{
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 1px 57.3px rgba(0,0,0,0.5);
+  .cardTitle{
+    font-size: 21px;
+  }
+  .cardSpace{
+    min-height: 120px;
+  }
+}

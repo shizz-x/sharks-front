@@ -1,5 +1,7 @@
+$black-color: #0c0c0c;
+
 $black-theme:(
-  "background" : #090909,
+  "background" : $black-color,
   "font": #ffffff
 );
 
@@ -10,6 +12,8 @@ $white-theme:(
 
 $btn-border-radius: 15px;
 
+$top-phone-padding: 56px;
+
 $paddings:(
   "content-top" : 20px,
   "content-bottom" : 20px,
@@ -18,8 +22,11 @@ $paddings:(
 );
 
 $content-gap: 10px;
+
 $container-padding-x: 40px;
 
+$max-width-window: 430px;
+$padding-left-right: 13%;
 
 
 @function default_padding(){
@@ -35,7 +42,7 @@ $container-padding-x: 40px;
 
 
 :root{
-  --background-shark-color: #090909;
+  --background-shark-color: #0c0c0c;
   --font-shark: #ffffff;
 }
 

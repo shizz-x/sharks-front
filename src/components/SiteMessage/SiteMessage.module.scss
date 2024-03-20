@@ -1,0 +1,32 @@
+@import "../../styles/index";
+
+.messageStack {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: grid;
+  row-gap: 10px;
+  padding: $top-phone-padding 10px 0;
+  overflow-y:scroll;
+  scroll-behavior: unset;
+
+  .siteMessage {
+    width: 100%;
+    padding: 5px 20px;
+    background-color: rgba(18, 18, 18,0.76);
+    color: white;
+    border-radius: 15px;
+    hr{
+      padding: 0;
+      margin:auto;
+      height: 3px;
+      width: 66px;
+      background-color: #ffffff;
+      border: 0 none;
+      color: #ffffff;
+      border-radius: 2px;
+    }
+  }
+}

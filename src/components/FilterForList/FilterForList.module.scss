@@ -1,0 +1,24 @@
+@import "../../styles/index";
+
+.header{
+  font-size: 22px;
+  position: relative;
+  .filter{
+    border-radius: 50%;
+    border:1px solid #666666;
+    width: 30px;
+    height: 30px;
+    display: block;
+    position: absolute;
+    right: 0;
+    top:0;
+    cursor: pointer;
+    svg{
+      vertical-align: 0;
+      margin-left: 4px;
+      rect{
+        fill: themeFontColor() !important;
+      }
+    }
+  }
+}

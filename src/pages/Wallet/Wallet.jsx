@@ -1,7 +1,10 @@
 import { MainLayout } from "../../components/Layouts/MainLayout";
 import { VideoBanner } from "../../components/VideoBanner/VideoBanner";
+
 import video from "../../media/bg.mp4";
-import React from "react";
+
+import React, {useEffect, useState} from "react";
+
 import { Menu } from "../../components/Menu/Menu";
 import { Link } from "react-router-dom";
 import { ChatIcon } from "../../components/Icon/Chat/ChatIcon";
@@ -10,8 +13,9 @@ import { SettingIcon } from "../../components/Icon/Setting/SettingIcon";
 import { Balance } from "../../components/Balance/Balance";
 import { WalletMenu } from "../../components/WalletMenu/WalletMenu";
 import { TransactionsList } from "../../components/Transactions/TransactionsList";
-import UseTronContext from "../../contexts/TronContext/UseTronContext";
+import {useSecurityPassword} from "../../components/SecurityPassword/SecurityPasswordContext";
 
+import UseTronContext from "../../contexts/TronContext/UseTronContext";
 // const transactions = [
 //   {
 //     operationType: 1,
@@ -199,7 +203,6 @@ const parseTransactions = (transactions, userWalletAddress) => {
         balance: trx.value * 10 ** -trx.token_info.decimals,
         currency: trx.token_info.symbol,
       };
-
       if (dateNow.getDate() > transactionDate.getDate()) {
         operationDate = `${transactionDate.getDate()} ${transactionDate.getMonthName()}`;
       } else {
@@ -219,6 +222,42 @@ const parseTransactions = (transactions, userWalletAddress) => {
 
 export default function Wallet(props) {
   const { userWallet } = UseTronContext();
+  const {showPasswordWindow,setCheckHandler} = useSecurityPassword();
+
+  const [firstCode,setFirstCode]= useState('');
+
+  //Устанавливаем пин
+    const pinCodeHandlerFirst = (pin)=>{
+        console.log(pin);
+        const password = pin.join('');
+        setFirstCode(password);
+        return true;
+    }
+
+    // проверяем что установленный пин корректный
+    const pinCodeHandlerSecond = (pin)=>{
+        console.log(pin);
+        const pass= pin.join('');
+        return firstCode === pass;
+    }
+
+    //Очищаем значения сохраненного пина и вызываем окно
+    const startSetPinHandler =()=>{
+        setFirstCode('');
+        showPasswordWindow('Set security password','Incorrect security password');
+    }
+
+    //Тут проверяем появился ли пин, если да, то вызываем окно с другими заголовками и в качестве проверки используем второй хендлер
+    useEffect(()=>{
+        if(firstCode!=='') {
+            setCheckHandler(pinCodeHandlerSecond);
+            showPasswordWindow('Repeat security password', 'Incorrect security password');
+        } else {
+            setCheckHandler(pinCodeHandlerFirst);
+        }
+    },[firstCode])
+
+
 
   return (
     <MainLayout>
@@ -238,7 +277,7 @@ export default function Wallet(props) {
         </Menu>
 
         <Balance
-          balance={userWallet.tokens[0].parsed || 0}
+          balance={userWallet.tokens[0].parsed || 0 }
           currency={userWallet.tokens[0].ticker || "USDT"}
           currencySymbol={"$"}
         />

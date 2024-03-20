@@ -6,7 +6,7 @@
   width: 100%;
   box-shadow: 0 20px 57px -20px rgba(0, 0, 0, 0.47);
   padding-bottom: 26px;
-  padding-top: 56px;
+  padding-top: $top-phone-padding;
   margin-bottom: 20px;
   &.sticky{
     position: sticky;
@@ -17,6 +17,13 @@
   &.round{
     border-radius: 0 0 35px 35px;
   }
+
+  &.fullScreen{
+    min-height: 100vh;
+    margin-bottom: 0;
+    border-radius: 0;
+  }
+
   overflow: hidden;
   position: relative;
 
@@ -30,10 +37,198 @@
     top: 0;
     bottom: 0;
     z-index: 1;
+    pointer-events: none;
+
+
   }
+
 
   .containerVideo{
     z-index: 2;
     position: relative;
   }
+}
+.targetVideoBanner{
+
+  position: sticky;
+  width: 100%;
+  box-shadow: 0 20px 57px -20px rgba(0, 0, 0, 0.47);
+  padding-bottom: 26px;
+  margin-bottom: 20px;
+
+  .topBar {
+    width: 100%;
+    height: 50px;
+    background-color: var(--color);
+  }
+  .background {
+    background-color: var(--color);
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: calc(60vh - 50px);
+    overflow: hidden;
+    border-radius: 0 0 25px 25px;
+    transition: background-color 0.4s ease;
+  }
+  .top-bar {
+    width: 100%;
+    height: 50px;
+    background-color: var(--color);
+  } 
+
+.background {
+    background-color: var(--color);
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: calc(60vh - 50px);
+    overflow: hidden;
+    border-radius: 0 0 25px 25px;
+    transition: background-color 0.4s ease;
+}
+
+.summ {
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  padding: 10%;
+  box-sizing: border-box;
+}
+/* blur div */
+.gradient {
+    position: absolute;
+    height: 77px;
+    width: 100%;
+    z-index: 4;
+    background: linear-gradient(0deg, var(--color0) 0%, var(--color) 100%);
+    transition: background-color 0.4s ease;
+}
+
+/* blur div */
+
+.blur {
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff01;
+    backdrop-filter: blur(150px);
+    position: absolute;
+    z-index: 3;
+}
+
+/* primary svg */
+
+.primary {
+    position: absolute;
+    top: 10%;
+    left: -60%;
+    animation: primary_animation 35s infinite;
+    animation-timing-function: linear;
+    z-index: 1;
+}
+
+.primary path {
+    fill: var(--primary);
+    transition: fill 0.4s ease;
+}
+
+@keyframes primary_animation {
+    from {
+        transform: rotate(0deg) translateX(-150px);
+    }
+    to {
+        transform: rotate(360deg) translateX(50px);
+    }
+}
+.secondary {
+  top: 34%;
+  position: absolute;
+  right: -76%;
+  animation: secondary_animation 35s infinite;
+  animation-timing-function: linear;
+  z-index: 2;
+}
+
+.secondary path {
+  fill: var(--secondary);
+  transition: fill 0.4s ease;
+}
+
+@keyframes secondary_animation {
+  from {
+      transform: rotate(360deg) translateX(150px);
+  }
+  to {
+      transform: rotate(0deg) translateX(-50px);
+  }
+}
+
+
+&.wallet {
+    --color: #ff6427;
+    --color0: #ff5e3a00;
+    --primary: #f857ff;
+    --secondary: #00d28d;
+}
+
+&.receive {
+    --color: #66ef52;
+    --color0: #ff5e3a00;
+    --primary: #c0e120;
+    --secondary: #56dfed;
+}
+
+&.send {
+    --color: #f82020;
+    --color0: #ffa03a00;
+    --primary: #e14d20;
+    --secondary: #ed8056;
+}
+
+&.error {
+    --color: #bb43ff;
+    --color0: #ff5e3a00;
+    --primary: #6e20e1;
+    --secondary: #567ced;
+}
+
+&.blue-card {
+    --hue: 212;
+    --color: hsla(var(--hue), 100%, 50%, 1);
+    --color0: hsla(var(--hue), 100%, 50%, 0);
+    --primary: hsla(calc(var(--hue) - 14), 100%, 60%, 1);
+    --secondary: hsla(calc(var(--hue) + 14), 90%, 45%, 1);
+}
+
+&.orange-card {
+    --hue: 39;
+    --color: hsla(var(--hue), 100%, 50%, 1);
+    --color0: hsla(var(--hue), 100%, 50%, 0);
+    --primary: hsla(calc(var(--hue) - 14), 100%, 60%, 1);
+    --secondary: hsla(calc(var(--hue) + 14), 90%, 45%, 1);
+}
+
+&.yellow-card {
+    --hue: 58;
+    --color: hsla(var(--hue), 73%, 45%, 1);
+    --color0: hsla(var(--hue), 48%, 76%, 0);
+    --primary: hsla(calc(var(--hue) - 7), 104%, 45%, 1);
+    --secondary: hsla(calc(var(--hue) + 4), 107%, 45%, 1);
+}
+
+&.green-card {
+    --hue: 132;
+    --color: hsla(var(--hue), 94%, 37%, 1);
+    --color0: hsla(var(--hue), 48%, 76%, 0);
+    --primary: hsla(calc(var(--hue) - 14), 104%, 45%, 1);
+    --secondary: hsla(calc(var(--hue) + 14), 85%, 45%, 1);
+}
+
+&.pink-card {
+    --hue: 332;
+    --color: hsla(var(--hue), 100%, 50%, 1);
+    --color0: hsla(var(--hue), 100%, 50%, 0);
+    --primary: hsla(calc(var(--hue) - 14), 100%, 60%, 1);
+    --secondary: hsla(calc(var(--hue) + 14), 90%, 45%, 1);
+}
 }

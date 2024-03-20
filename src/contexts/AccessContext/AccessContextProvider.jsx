@@ -15,7 +15,9 @@ export default function AccessContextProvider({ children }) {
   const navigate = useNavigate();
 
   useEffect(() => {
+
     const randomMnemonicToSet = generateMnemonic();
+    
     if (!isMnemonicBackuped()) {
       setMnemonicPhrase(randomMnemonicToSet, false);
       setMnemonicPhraseState(randomMnemonicToSet);

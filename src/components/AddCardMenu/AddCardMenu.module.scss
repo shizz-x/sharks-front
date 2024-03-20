@@ -1,0 +1,37 @@
+@import "../../styles/index";
+
+
+.addCardMenu{
+  position: absolute;
+  z-index: 98;
+  min-height: calc(100vh - 56px);
+  width: 100%;
+  left:0;
+  top: 56px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 45%, rgba(12, 12, 12, 0.56) 55%, rgba(12, 12, 12, 0.9));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  padding-top: 25px;
+
+  &:before{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: calc(100vh - 56px);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.99) 35%, rgba(12, 12, 12, 0.56) 55%, rgba(12, 12, 12, 0.29));
+    top: 0;
+    filter: blur(5px);
+    left: 0;
+    z-index: -1;
+  }
+
+
+  .closeIcon{
+    vertical-align: -5px;
+    cursor: pointer;
+  }
+}
