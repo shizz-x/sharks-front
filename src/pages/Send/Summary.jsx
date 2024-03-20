@@ -118,7 +118,7 @@ export function Summary(props) {
                 MainBlockComponent={()=><ConfirmMenu
                     backLink={-1}
                     confirmLink={window.location.href}
-                    confirmHandler={()=>showPasswordWindow("1", "2", true)}
+                    confirmHandler={()=>passHandler()}
                 />}
             >
 
