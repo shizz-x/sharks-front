@@ -1,0 +1,17 @@
+@import "../../styles/index";
+
+.settingPins{
+  width: 100%;
+
+  .title{
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: $content-gap*2;
+  }
+
+  .error{
+    text-align: center;
+    margin-top: $content-gap*2;
+  }
+
+}

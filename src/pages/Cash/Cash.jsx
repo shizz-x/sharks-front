@@ -101,7 +101,7 @@ export function Cash(props) {
                         flag={selectCity.flag}
                         info={'After requesting withdrawal, a courier arranges delivery to your location.'}
                         component={
-                            <div className={'d-flex justify-content-center'}>
+                            <div className={'d-flex justify-content-center mb-4'}>
                                 <ButtonGroup
                                     color={'#af4ed5'}
                                     radios={radios}

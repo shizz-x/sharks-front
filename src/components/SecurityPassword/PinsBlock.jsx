@@ -1,10 +1,12 @@
 import PropTypes from "prop-types";
 import style from "./SecurityPassword.module.scss";
 import {useEffect, useState} from "react";
+import classNames from "classnames";
 
 
 PinsBlock.propTypes = {
-    pins: PropTypes.array.isRequired
+    pins: PropTypes.array.isRequired,
+    error: PropTypes.bool
 }
 
 export function PinsBlock(props) {
@@ -50,7 +52,7 @@ export function PinsBlock(props) {
     },[finishTime])
 
     return (
-        <div className={style.pinsBlock}>
+        <div className={classNames(style.pinsBlock,props.error?style.error:null)}>
             {pin.map((item,key)=>(
                 <span className={style.pin} key={key}>{item}</span>
             ))}

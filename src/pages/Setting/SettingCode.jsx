@@ -6,7 +6,7 @@ import {ChatIcon} from "../../components/Icon/Chat/ChatIcon";
 import {Container} from "react-bootstrap";
 import {PhraseButton} from "../../components/Button/PhraseButton";
 import {FlexColumnLayout} from "../../components/Layouts/FlexColumnLayout";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {KeyPad, NUMLIST_WITHOUT_DOT} from "../../components/KeyPad/KeyPad";
 import {SettingPins} from "../../components/SettingPins/SettingPins";
 import {PinHOC} from "../../components/SecurityPassword/PinHOC";
@@ -14,9 +14,24 @@ import {PinHOC} from "../../components/SecurityPassword/PinHOC";
 
 
 function SettingCode(props) {
+
+    const [title,setTitle] = useState('Enter current password');
+    const [step,setStep] = useState(0);
     const checkHandler = (pin)=>{
         console.log(pin);
-        return false;
+
+        switch (step){
+            case 0:
+                setStep(1);
+                setTitle('Enter new password');
+                return true;
+            case 1:
+                setStep(2);
+                setTitle('Repeat new password')
+                return true;
+            default:
+                return false;
+        }
     }
 
     useEffect(()=>{
@@ -38,17 +53,21 @@ function SettingCode(props) {
 
     return (
         <FlexColumnLayout minVH={true}>
-            <TopPhoneLayout background={true} >
+            <TopPhoneLayout background={true} error={props.errorCode} >
                 <Menu>
                     <Menu.Left><Link to={-1}><ArrowIcon /></Link></Menu.Left>
                     <Menu.Title>Change password</Menu.Title>
                     <Menu.Right><Link to={"#"}><ChatIcon/></Link></Menu.Right>
                 </Menu>
 
-                <SettingPins pins={props.pin} />
+                <SettingPins
+                    pins={props.pin}
+                    title={title}
+                    errorCode={props.errorCode}
+                />
 
                 <Container>
-                    <PhraseButton>
+                    <PhraseButton disable={props.errorCode}>
                         <ArrowIcon leftToRight={true} />
                         <span style={{marginLeft:15,paddingTop:2,display:"inline-block",verticalAlign:-2}}>
                           Confirm

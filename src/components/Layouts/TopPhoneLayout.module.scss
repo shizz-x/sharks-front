@@ -8,4 +8,7 @@
     padding-bottom: $content-gap*2;
     background-color: #191919;
   }
+  &.error{
+    background: linear-gradient(to top, rgba(178, 40, 100, 0.5), rgba(25, 25, 25,1) 35%);
+  }
 }

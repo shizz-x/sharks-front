@@ -33,6 +33,8 @@ import {CashStatus} from "./pages/Cash/CashStatus";
 import {Setting} from "./pages/Setting/Setting";
 import {SettingPhrase} from "./pages/Setting/SettingPhrase";
 import SettingCode from "./pages/Setting/SettingCode";
+import {About} from "./pages/Setting/About";
+import {Privacy} from "./pages/Setting/Privacy";
 
 
 
@@ -73,6 +75,8 @@ export default class App extends Component {
                                             <Route path="/setting" element={<Setting></Setting>}></Route>
                                             <Route path="/settingPhrase" element={<SettingPhrase></SettingPhrase>}></Route>
                                             <Route path="/settingCode" element={<SettingCode></SettingCode>}></Route>
+                                            <Route path="/settingAbout" element={<About></About>}></Route>
+                                            <Route path="/settingPrivacy" element={<Privacy></Privacy>}></Route>
                                             <Route path="/login2" element={<Login></Login>}></Route>
                                             <Route path="/register" element={<Register></Register>}></Route>
                                         </Routes>

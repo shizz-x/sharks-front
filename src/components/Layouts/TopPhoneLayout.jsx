@@ -4,11 +4,14 @@ import classNames from "classnames";
 
 TopPhoneLayout.propTypes={
     background:PropTypes.bool,
-    style: PropTypes.object
+    style: PropTypes.object,
+    error: PropTypes.bool
 }
 export function TopPhoneLayout(props) {
     return (
-        <div className={classNames(style.topPhoneLayout,props.background?style.background:null)} style={props.style}>
+        <div
+            className={classNames(style.topPhoneLayout,props.background?style.background:null,props.error?style.error:null)}
+            style={props.style}>
             {props.children}
         </div>
     );

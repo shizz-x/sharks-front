@@ -43,11 +43,11 @@ const menu=[
     },
     {
         title:'About us',
-        link:'/'
+        link:'/settingAbout'
     },
     {
         title:'Privacy policy',
-        link:'/'
+        link:'/settingPrivacy'
     },
 ]
 export function Setting(props) {

@@ -8,6 +8,7 @@ import {useSecurityPassword} from "./SecurityPasswordContext";
 import {KeyPad} from "../KeyPad/KeyPad";
 import {DeleteIcon} from "../Icon/Delete/DeleteIcon";
 import {useSwipeable} from "react-swipeable";
+import {clearPins, PinHOC} from "./PinHOC";
 
 
 SecurityPassword.propTypes = {
@@ -26,22 +27,13 @@ const config = {
 }
 
 
-export const PIN_SIZE = 6;
 
-const clearPins = ()=>Array(PIN_SIZE).fill('')
-
-
-
-export function SecurityPassword(props) {
-
-    const [pin, setPin] = useState(clearPins());
-    const [currentItem,setCurrentItem] = useState(0);
+function SecurityPassword(props) {
     const {getCheckHandler,hidePasswordWindow,title,errorTitle} = useSecurityPassword();
-    const [errorCode,setErrorCode] = useState(false);
 
     const handlers = useSwipeable({
         onSwipedDown: (eventData) =>{
-            clearPin();
+            props.clearPins();
             hidePasswordWindow();
         },
         ...config,
@@ -50,54 +42,25 @@ export function SecurityPassword(props) {
 
     const canClosePass = props.canClose;
 
-    const clearPin = ()=>{
-        setPin(clearPins())
-        setCurrentItem(0);
-        setErrorCode(false);
-    }
 
-
-
-
-    const handleButton = (val) =>{
-        if(currentItem<PIN_SIZE) {
-            const newItem = currentItem + 1;
-            const newPin = [...pin];
-            newPin[currentItem] = val;
-            setPin(newPin);
-            setCurrentItem(newItem);
-        }
-    }
-
-    const handleDelete = ()=> {
-        if(currentItem>=0) {
-            const newPin = [...pin];
-            const newItem = currentItem - 1;
-            for(let i = newItem;i<PIN_SIZE;i++) {
-                newPin[i] = '';
-            }
-            setPin(newPin);
-            setCurrentItem(newItem<0?0:newItem)
-        }
-    }
 
     useEffect(()=>{
-        const fullFill = pin.findIndex((val)=>val==='');
+        const fullFill = props.pin.findIndex((val)=>val==='');
         if(fullFill===-1) {
             const checkHandler = getCheckHandler();
-            const result = checkHandler(pin);
+            const result = checkHandler(props.pin);
             if(result) {
                 hidePasswordWindow();
-                clearPin();
+                props.clearPins();
             } else {
                 const timer = setTimeout(()=>{
-                    clearPin();
+                    props.clearPins();
                     clearTimeout(timer);
                 },2000)
-                setErrorCode(true);
+                props.setErrorCode(true);
             }
         }
-    },[pin])
+    },[props.pin])
 
     let addSwipeHandler = {};
     if(canClosePass) {
@@ -109,16 +72,16 @@ export function SecurityPassword(props) {
         <ShowDependencies dependencies={props.show}>
             <div className={classNames(style.secPasswordContainer)}>
                 <div className={style.contPassword}>
-                    <div className={classNames(style.codeBlock,errorCode?style.errorCode:null)} {...addSwipeHandler}>
+                    <div className={classNames(style.codeBlock,props.errorCode?style.errorCode:null)} {...addSwipeHandler}>
                         <ShowDependencies dependencies={!canClosePass}>
-                            <h3 className={'text-center'}>{errorCode?errorTitle:title}</h3>
+                            <h3 className={'text-center'}>{props.errorCode?errorTitle:title}</h3>
                         </ShowDependencies>
                         <ShowDependencies dependencies={canClosePass}>
                             <hr className={style.hrTop} />
                             <div className={classNames('mb-1',style.innerContainer)}>
-                                <h3>{errorCode?errorTitle:title}</h3>
+                                <h3>{props.errorCode?errorTitle:title}</h3>
                                 <div className={style.closeWindow} onClick={()=>{
-                                  clearPin();
+                                  props.clearPins();
                                   hidePasswordWindow();
                                 }}>
                                     <DeleteIcon />
@@ -127,12 +90,14 @@ export function SecurityPassword(props) {
                         </ShowDependencies>
 
                         <PinsBlock
-                            pins={pin}
+                            pins={props.pin}
                         />
-                        <KeyPad handleButton={handleButton}  handleDelete={handleDelete} />
+                        <KeyPad handleButton={props.handleButton}  handleDelete={props.handleDelete} />
                     </div>
                 </div>
             </div>
         </ShowDependencies>
     );
 }
+
+export default PinHOC(SecurityPassword);

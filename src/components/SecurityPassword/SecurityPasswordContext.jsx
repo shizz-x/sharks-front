@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import react, {useContext, useEffect, useState} from "react";
-import {SecurityPassword} from "./SecurityPassword";
-import style from "./SecurityPassword.module.scss"
+import SecurityPassword from "./SecurityPassword";
 import {useBlur} from "../Layouts/BlurContext";
 
 

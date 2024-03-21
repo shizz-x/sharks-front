@@ -4,6 +4,7 @@ export const PIN_SIZE = 6;
 
 export const clearPins = ()=>Array(PIN_SIZE).fill('')
 
+
 export const PinHOC = (Component) => (props) => {
 
     const PinHOCComponent= ()=>{
